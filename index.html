@@ -15,6 +15,17 @@
     justify-content: center;
     align-items: center;
   }
+
+  /* โลโก้ที่มุมซ้ายบน */
+  #sutLogo {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 20vw;  /* ขนาดโลโก้เป็น 20% ของความกว้างหน้าจอ */
+    height: auto;
+    z-index: 1000; /* ให้อยู่ด้านบนสุด */
+  }
+
   #wrapper {
     text-align: center;
     max-width: 90vw;
@@ -49,6 +60,30 @@
     color: #555555;
     user-select: none;
   }
+
+  .text-arrow-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+  }
+
+  .text-arrow-container h6 {
+    margin: 0;
+    font-size: 3.5vw;
+    line-height: 1.4;
+  }
+
+  /* กำหนดขนาดและตำแหน่งของลูกศร */
+  .text-arrow-container img {
+    width: 20px; /* กำหนดขนาดลูกศร */
+    height: 20px;
+    max-width: 20px; /* จำกัดขนาดสูงสุด */
+    max-height: 20px; /* จำกัดขนาดสูงสุด */
+    margin-top: 5px; /* เพิ่มระยะห่าง */
+  }
+
 
   /* วงกลมครอบไอคอน */
   #giftIconWrapper {
@@ -93,10 +128,18 @@
     #giftIcon {
       width: 45px;
     }
+    .text-arrow-container img {
+    width: 20px;
+    height: 20px;
+    margin-top: 5px; /* เพิ่มระยะห่าง */
+  }
   }
 </style>
 </head>
 <body>
+
+<!-- โลโก้ มทส. -->
+<img id="sutLogo" src="img/SUT_LOGO.png" alt="SUT Logo" />
 
 <div id="wrapper">
   <img id="hiSticker" src="gif/Hi2.gif" alt="เด็กน้อยสติ๊กเกอร์" />
@@ -108,16 +151,33 @@
       มหาวิทยาลัยเทคโนโลยีสุรนารี
     </h1>
     <h6>
-  วันนี้พี่อยากมาแบ่งปันประสบการณ์เกี่ยวกับชีวิตและการเรียนที่มหาวิทยาลัยนี้
-  ผ่านเรื่องราวของพี่เอง เพื่อให้น้องๆ ได้เห็นภาพและเตรียมตัวได้ดีขึ้นครับ
-  
-</h6>
-<h6 style="color: #f58220;">หากเลื่อนขึ้นไปข้างบนจะพบกับเรื่องราวการเรียน</h6> 
-<h6 style="color: #4caf50;">หากเลื่อนลงไปข้างล่างจะพบกับกิจกรรมต่างๆ</h6>
-<h6 style="color: #2196f3;">หากเลื่อนไปทางซ้ายจะพบกับบรรยากาศของมหาวิทยาลัย</h6>
-<h6 style="color: #9c27b0;">หากเลื่อนไปทางขวาจะพบกับชีวิตประจำวัน</h6>
+      วันนี้พี่อยากมาแบ่งปันประสบการณ์เกี่ยวกับชีวิตและการเรียนที่มหาวิทยาลัยนี้
+      ผ่านเรื่องราวของพี่เอง เพื่อให้น้องๆ ได้เห็นภาพและเตรียมตัวได้ดีขึ้นครับ
+    </h6>
 
+    <div class="text-arrow-container">
+      <img src="img/next-up.png" alt="next-up" />
+      <h6 style="color: #f58220;">การเรียน</h6> 
+    </div>
 
+    <div class="text-arrow-container">
+      <img src="img/next-down.png" alt="next-down" />
+      <h6 style="color: #4caf50;">กิจกรรม</h6>
+    </div>
+
+    <div class="text-arrow-container">
+      <img src="img/next-left.png" alt="next-left" />
+      <h6 style="color: #2196f3;">บรรยากาศ</h6>
+    </div>
+
+    <div class="text-arrow-container">
+      <img src="img/next-rigth.png" alt="next-rigth" />
+      <h6 style="color: #9c27b0;">ชีวิตประจำวัน</h6>
+    </div>
+
+    
+
+    
   </div>
 </div>
 
