@@ -5,44 +5,225 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Left Page</title>
 <style>
-  html, body {
-    margin:0; padding:0; overflow:hidden; height:100%;
-    font-family: Arial, sans-serif;
-    background: #2196f3;
-    color: white;
+  @font-face {
+    font-family: 'Mitr';
+    src: url('font/Mitr-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
   }
-  #container {
-    width: 100vw;
-    height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px;
-    user-select: none;
 
-    /* เริ่มจากขวาเข้ามา */
-    transform: translateX(100vw);
-    animation: slide-in-left 0.5s forwards ease;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Mitr', Arial, sans-serif;
+    background: url('img/left-bg.jpg') no-repeat center center fixed;
+    background-size: cover; /* ปรับขนาดให้ครอบคลุมทั้งหน้าจอ */
+    background-position: center center; /* วางภาพให้อยู่ตรงกลาง */
+    background-attachment: fixed; /* ทำให้พื้นหลังไม่เลื่อน */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+h1, p {
+  color: white; /* สีตัวอักษร */
+  text-shadow: 1px 1px 2px black, -1px -1px 2px black; /* เพิ่มขอบดำ */
+}
+
+
+
+
+  #container {
+    width: 90vw;
+    max-width: 800px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 18px;
+    user-select: none;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: justify;
+    overflow-y: auto;
+    transform: translateY(100vh);
+    animation: slide-in-up 0.5s forwards ease;
     transition: transform 0.5s ease;
   }
-  @keyframes slide-in-left {
-    to { transform: translateX(0); }
+
+  @keyframes slide-in-up {
+    to { transform: translateY(0); }
   }
 
-  /* animation slide ออกไปขวา (กลับหน้า index) */
-  .slide-out-right {
-    animation: slide-out-right 0.5s forwards ease;
+  .slide-out-down {
+    animation: slide-out-down 0.5s forwards ease;
   }
-  @keyframes slide-out-right {
-    to { transform: translateX(100vw); }
+
+  @keyframes slide-out-down {
+    to { transform: translateY(100vh); }
   }
+
+  #giftIconWrapper {
+  position: fixed;
+  bottom: 130px;
+  right: 20px;
+  width: 90px;
+  height: 90px;
+  background: #f58220; /* สีส้ม มทส. */
+  border-radius: 50%; /* ทำให้เป็นวงกลม */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาที่ชัดเจน */
+  transform: translateY(-5px); /* ทำให้มีมิติที่ลอยขึ้นเล็กน้อย */
+  transition: all 0.3s ease-in-out; /* เพิ่มเอฟเฟกต์การเคลื่อนไหว */
+  z-index: 100;
+}
+
+#giftIconWrapper:hover {
+  transform: translateY(-8px); /* เงาขึ้นเมื่อมีการ hover */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.15); /* เงาที่ใหญ่ขึ้นเมื่อ hover */
+}
+
+  #giftIcon {
+    width: 60px;
+    height: auto;
+    user-select: none;
+  }
+
+  /* ปุ่ม toggle lock/unlock */
+  #lockUnlockWrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 90px;
+    height: 90px;
+    background: #f58220; /* สีส้ม มทส. */
+    border-radius: 50%; /* ทำให้เป็นวงกลม */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาที่ชัดเจน */
+    transform: translateY(-5px); /* ทำให้มีมิติที่ลอยขึ้นเล็กน้อย */
+    transition: all 0.3s ease-in-out; /* เพิ่มเอฟเฟกต์การเคลื่อนไหว */
+    z-index: 100;
+  }
+
+  #lockUnlockWrapper:hover {
+    transform: translateY(-8px); /* เงาขึ้นเมื่อมีการ hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.15); /* เงาที่ใหญ่ขึ้นเมื่อ hover */
+  }
+
+  #lockUnlockWrapper img {
+    width: 40px;
+    height: auto;
+    user-select: none;
+    transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+  }
+
+  #lockUnlockWrapper img:hover {
+    transform: scale(1.1);
+  }
+
+  /* ปุ่มเสียง (Voice) */
+  #voiceWrapper {
+    position: fixed;
+    bottom: 120px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: #2196F3; /* สีฟ้า */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาที่ชัดเจน */
+    transform: translateY(-5px); /* ทำให้มีมิติที่ลอยขึ้นเล็กน้อย */
+    transition: all 0.3s ease-in-out;
+    z-index: 99;
+  }
+
+  #voiceWrapper:hover {
+    transform: translateY(-8px); /* เงาขึ้นเมื่อมีการ hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.15); /* เงาที่ใหญ่ขึ้นเมื่อ hover */
+  }
+
+  #voiceWrapper img {
+    width: 40px;
+    height: auto;
+    user-select: none;
+  }
+
+  #voiceWrapper img:hover {
+    transform: scale(1.1);
+  }
+
 </style>
 </head>
 <body>
 
 <div id="container">
-  หน้าซ้าย (left.html)<br>Swipe right กลับหน้าหลัก
+  <h1>บรรยากาศและสิ่งแวดล้อม</h1>
+  <p>ขอแบ่งเป็นส่วนๆ ในแต่ละวันและในแต่ละฤดูกาลดีกว่า สำหรับในแต่ละวัน ในช่วงเช้าจะเป็นเวลาของการไปเรียน ซึ่งจะเริ่มตั้งแต่ประมาณ 8 โมงถึง 9 โมง ในช่วงนี้จะมีรถมอเตอร์ไซค์จำนวนมากวิ่งบนท้องถนน โดยส่วนใหญ่จะมุ่งหน้าไปที่อาคารเรียนรวมของมหาวิทยาลัย ซึ่งที่นี่จะใช้เป็นอาคารสำหรับการเรียนการสอน (Lecture Hall) จากนั้นก็จะมีการแบ่งกลุ่มไปทำกิจกรรมของแต่ละสาขาที่อาคารแล็บ ซึ่งแล็บเหล่านี้จะมีหลายตึกตามสาขาวิชา บางสาขาจะมีการใช้เครื่องมือร่วมกันและเรียนในตึกเดียวกัน ในส่วนของบรรยากาศการเรียนก็จะแตกต่างจากมัธยม เพราะบางครั้งเพื่อนๆ ก็ไม่ได้เรียนวิชาเดียวกันหรืออยู่ในห้องเดียวกันตลอดเวลา เว้นแต่ว่าจะลงวิชาเดียวกันในเวลาเดียวกันกับ Section เดียวกัน
+
+บรรยากาศภายในมหาวิทยาลัยค่อนข้างร่มรื่น เพราะมีพื้นที่ป่าเป็นจำนวนมาก เหมาะกับคนที่ชอบสีเขียวๆ ถึงแม้ว่าจะมีป่ามาก แต่ก็ไม่ห่างจากตัวเมืองเลย ขับไปประมาณ 10 นาทีก็ถึงตัวเมืองแล้ว ในกรณีที่อยากไปเที่ยว ก็มีห้างใหญ่ๆ อย่าง เดอะมอลล์ เซ็นทรัล และ Terminal 21 ที่ตั้งอยู่ไม่ไกลจากมหาวิทยาลัย นอกจากนี้ยังไม่ห่างจากสถานที่ท่องเที่ยวชื่อดัง เช่น เขาใหญ่ หรือเขาเขียว
+
+ในเรื่องของฤดูต่างๆ ฤดูร้อนช่วงกลางวันจะร้อนมาก ส่วนฤดูฝนค่อนข้างชื้น ถ้าอยู่หอในจะมีปัญหาเรื่องยุงค่อนข้างเยอะ เนื่องจากหอในบางส่วนตั้งอยู่ใกล้พื้นที่ป่า แต่ก็ไม่ใช่ป่าขนาดใหญ่ เป็นป่านิดๆ ที่มหาวิทยาลัยสร้างเอาไว้ โดยอากาศในช่วงนั้นจะค่อนข้างเย็นมาก โดยเฉพาะในช่วงหน้าหนาวที่อุณหภูมิจะลดลงถึงประมาณ 18 องศาเซลเซียส ซึ่งถือว่าค่อนข้างเย็น
+
+สิ่งที่ทำให้รู้สึกดีมากในช่วงที่อยู่หอคือพี่ๆ ที่หอคอยช่วยเหลือดีมาก ตั้งแต่วันแรกที่เข้ามา บรรยากาศที่นี่ทำให้รู้สึกไม่โดดเดี่ยว เพราะมีสถานที่ให้ทำกิจกรรมหลากหลาย เช่น ยิมที่สามารถเข้าใช้ได้ฟรี หรือแม้แต่สระน้ำที่วิ่งคนไปเยอะๆ หรือแม้กระทั่งอ่างห้วยยางที่ให้บรรยากาศริมแม่น้ำ ซึ่งเหมาะมากสำหรับการออกกำลังกายและพักผ่อน
+
+สรุปได้เลยว่า มหาวิทยาลัยนี้เหมาะสำหรับคนที่ชอบบรรยากาศธรรมชาติ ไม่ต้องการการเที่ยวมากเกินไป แต่ก็ยังสามารถเพลิดเพลินกับกิจกรรมต่างๆ และการใช้ชีวิตในบรรยากาศที่ร่มรื่นได้ดี</p>
+
+  
 </div>
 
+<!-- ปุ่ม Toggle Lock และ Unlock -->
+<div id="lockUnlockWrapper">
+  <img id="lockUnlockIcon" src="gif/unlock.png" alt="unlock" title="Unlock" onclick="toggleLock()" />
+</div>
+
+<!-- วงกลมครอบไอคอน gift -->
+<div id="giftIconWrapper" title="กดเพื่อฟังเสียง">
+  <img id="giftIcon" src="gif/voice.png" alt="Gift Icon" />
+</div>
+
+<audio id="voiceAudio" src="voice/left.mp3" preload="auto"></audio>
+
 <script>
+  const giftIconWrapper = document.getElementById('giftIconWrapper');
+  const voiceAudio = document.getElementById('voiceAudio');
+
+  giftIconWrapper.addEventListener('click', () => {
+    voiceAudio.play().catch(e => {
+      console.log('เสียงเล่นไม่ได้ อาจต้องรอ interaction:', e);
+    });
+  });
+</script>
+<script>
+  let isLocked = false; // ตัวแปรบอกสถานะของ Lock/Unlock
+  
+
+  // ฟังก์ชัน Toggle Lock/Unlock
+  function toggleLock() {
+    isLocked = !isLocked; // สลับสถานะ lock/unlock
+    const icon = document.getElementById("lockUnlockIcon");
+    
+    // เปลี่ยน icon ขึ้นอยู่กับสถานะ
+    icon.src = isLocked ? "gif/lock.png" : "gif/unlock.png";
+    icon.alt = isLocked ? "lock" : "unlock";
+    
+    // เพิ่ม animation ขยายหด
+    icon.style.transform = isLocked ? "scale(1.2)" : "scale(1)";
+    setTimeout(() => {
+      icon.style.transform = isLocked ? "scale(1)" : "scale(1.2)";
+    }, 300);
+  }
   const container = document.getElementById('container');
 
   function navigateBack() {
