@@ -12,18 +12,22 @@
     font-style: normal;
   }
 
-  html, body {
+html, body {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: 'Mitr', Arial, sans-serif;
-    background: url('img/right-bg.jpg') no-repeat left center fixed; /* ตั้งพื้นหลัง */
+    background: url('img/right-bg.jpg') no-repeat center center fixed;
     background-size: cover; /* ปรับขนาดให้ครอบคลุมทั้งหน้าจอ */
+    background-position: center center; /* วางภาพให้อยู่ตรงกลาง */
+    background-attachment: fixed; /* ทำให้พื้นหลังไม่เลื่อน */
     color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+    
+}
+
 
   #container {
     width: 90vw;
