@@ -5,50 +5,350 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Down Page</title>
 <style>
-  html, body {
-    margin:0; padding:0; overflow:hidden; height:100%;
-    font-family: Arial, sans-serif;
-    background: #ff9800;
-    color: white;
+  @font-face {
+    font-family: 'Mitr';
+    src: url('font/Mitr-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
   }
-  #container {
-    width: 100vw;
-    height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px;
-    user-select: none;
 
-    /* เริ่มจากบนเข้ามา */
-    transform: translateY(-100vh);
-    animation: slide-in-down 0.5s forwards ease;
-    transition: transform 0.5s ease;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Mitr', Arial, sans-serif;
+    background: url('img/down-bg.jpg') no-repeat center center fixed;
+    background-size: cover; /* ปรับขนาดให้ครอบคลุมทั้งหน้าจอ */
+    background-position: center center; /* วางภาพให้อยู่ตรงกลาง */
+    background-attachment: fixed; /* ทำให้พื้นหลังไม่เลื่อน */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-attachment: fixed; /* ให้พื้นหลังไม่เลื่อน */
+    animation: backgroundSwitch 150s infinite; /* เปลี่ยนเวลาเป็น 30 วินาที */
+    
+}
+h1, p {
+  color: white; /* สีตัวอักษร */
+  text-shadow: 1px 1px 2px black, -1px -1px 2px black; /* เพิ่มขอบดำ */
+}
+
+
+
+
+#container { 
+    width: 90vw;
+    max-width: 800px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 18px;
+    user-select: none;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: justify;
+    overflow-y: auto;
+    transform: translateY(-100vh); /* เริ่มจากขวา */
+    animation: slide-in-left 0.5s forwards ease, fadeOut 10s forwards; /* เพิ่มการ fade out หลัง 1 นาที */
+}
+
+@keyframes slide-in-left {
+    to { transform: translateY(0); } /* จบที่ตำแหน่งปกติ */
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1; /* เริ่มต้นด้วยความทึบเต็มที่ */
+    }
+    98% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0; /* ทำให้มองไม่เห็นหลังจาก 1 นาที */
+        visibility: hidden; /* ปิดการมองเห็น */
+    }
+}
+
+
+@keyframes backgroundSwitch {
+    0% {
+      background-image: url('img/100.jpg');
+    }
+    3.23% {
+      background-image: url('img/101.jpg');
+    }
+    6.45% {
+      background-image: url('img/102.jpg');
+    }
+    9.68% {
+      background-image: url('img/103.jpg');
+    }
+    12.9% {
+      background-image: url('img/104.jpg');
+    }
+    16.13% {
+      background-image: url('img/105.jpg');
+    }
+    19.35% {
+      background-image: url('img/106.jpg');
+    }
+    22.58% {
+      background-image: url('img/107.jpg');
+    }
+    25.81% {
+      background-image: url('img/108.jpg');
+    }
+    29.03% {
+      background-image: url('img/109.jpg');
+    }
+    32.26% {
+      background-image: url('img/110.jpg');
+    }
+    35.48% {
+      background-image: url('img/111.jpg');
+    }
+    38.71% {
+      background-image: url('img/112.jpg');
+    }
+    41.93% {
+      background-image: url('img/113.jpg');
+    }
+    45.16% {
+      background-image: url('img/114.jpg');
+    }
+    48.39% {
+      background-image: url('img/115.jpg');
+    }
+    51.61% {
+      background-image: url('img/116.jpg');
+    }
+    54.84% {
+      background-image: url('img/117.jpg');
+    }
+    58.06% {
+      background-image: url('img/118.jpg');
+    }
+    61.29% {
+      background-image: url('img/119.jpg');
+    }
+    64.52% {
+      background-image: url('img/120.jpg');
+    }
+    67.74% {
+      background-image: url('img/121.jpg');
+    }
+    70.97% {
+      background-image: url('img/122.jpg');
+    }
+    74.19% {
+      background-image: url('img/123.jpg');
+    }
+    77.42% {
+      background-image: url('img/124.jpg');
+    }
+    80.64% {
+      background-image: url('img/125.jpg');
+    }
+    83.87% {
+      background-image: url('img/126.jpg');
+    }
+    87.1% {
+      background-image: url('img/127.jpg');
+    }
+    90.32% {
+      background-image: url('img/128.jpg');
+    }
+    93.55% {
+      background-image: url('img/129.jpg');
+    }
+    96.77% {
+      background-image: url('img/130.jpg');
+    }
+    100% {
+      background-image: url('img/100.jpg'); /* กลับไปที่ภาพแรก */
+    }
+}
+
+
+
+
+
+
+  .slide-out-down {
+    animation: slide-out-down 0.5s forwards ease;
   }
-  @keyframes slide-in-down {
-    to { transform: translateY(0); }
+
+  @keyframes slide-out-down {
+    to { transform: translateY(100vh); }
   }
-  .slide-out-up {
-    animation: slide-out-up 0.5s forwards ease;
+
+  #giftIconWrapper {
+  position: fixed;
+  bottom: 130px;
+  right: 20px;
+  width: 90px;
+  height: 90px;
+  background: #f58220; /* สีส้ม มทส. */
+  border-radius: 50%; /* ทำให้เป็นวงกลม */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาที่ชัดเจน */
+  transform: translateY(-5px); /* ทำให้มีมิติที่ลอยขึ้นเล็กน้อย */
+  transition: all 0.3s ease-in-out; /* เพิ่มเอฟเฟกต์การเคลื่อนไหว */
+  z-index: 100;
+}
+
+#giftIconWrapper:hover {
+  transform: translateY(-8px); /* เงาขึ้นเมื่อมีการ hover */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.15); /* เงาที่ใหญ่ขึ้นเมื่อ hover */
+}
+
+  #giftIcon {
+    width: 60px;
+    height: auto;
+    user-select: none;
   }
-  @keyframes slide-out-up {
-    to { transform: translateY(-100vh); }
+
+  /* ปุ่ม toggle lock/unlock */
+  #lockUnlockWrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 90px;
+    height: 90px;
+    background: #f58220; /* สีส้ม มทส. */
+    border-radius: 50%; /* ทำให้เป็นวงกลม */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาที่ชัดเจน */
+    transform: translateY(-5px); /* ทำให้มีมิติที่ลอยขึ้นเล็กน้อย */
+    transition: all 0.3s ease-in-out; /* เพิ่มเอฟเฟกต์การเคลื่อนไหว */
+    z-index: 100;
   }
+
+  #lockUnlockWrapper:hover {
+    transform: translateY(-8px); /* เงาขึ้นเมื่อมีการ hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.15); /* เงาที่ใหญ่ขึ้นเมื่อ hover */
+  }
+
+  #lockUnlockWrapper img {
+    width: 40px;
+    height: auto;
+    user-select: none;
+    transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+  }
+
+  #lockUnlockWrapper img:hover {
+    transform: scale(1.1);
+  }
+
+  /* ปุ่มเสียง (Voice) */
+  #voiceWrapper {
+    position: fixed;
+    bottom: 120px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: #2196F3; /* สีฟ้า */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาที่ชัดเจน */
+    transform: translateY(-5px); /* ทำให้มีมิติที่ลอยขึ้นเล็กน้อย */
+    transition: all 0.3s ease-in-out;
+    z-index: 99;
+  }
+
+  #voiceWrapper:hover {
+    transform: translateY(-8px); /* เงาขึ้นเมื่อมีการ hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.15); /* เงาที่ใหญ่ขึ้นเมื่อ hover */
+  }
+
+  #voiceWrapper img {
+    width: 40px;
+    height: auto;
+    user-select: none;
+  }
+
+  #voiceWrapper img:hover {
+    transform: scale(1.1);
+  }
+
 </style>
 </head>
 <body>
 
 <div id="container">
-  หน้าล่าง (down.html)<br>Swipe up กลับหน้าหลัก
+  <h1>กิจกรรม</h1>
+  <p>ในแต่ละปี มหาวิทยาลัยจะจัดกิจกรรมน้อยกว่ามหาวิทยาลัยอื่นๆ ตัวอย่างเช่น กิจกรรมปีใหม่, สงกรานต์, ผิงไฟหน้าหนาว, ดูหนังกลางแปลง, ชมรมต่าง ๆ, รับน้องใหม่, กีฬาสี, วิ่งเกียร์ที่จัดโดยคณะวิศวกรรมศาสตร์ และกิจกรรม Research to Market รวมถึงกิจกรรมอื่น ๆ ที่จัดโดยหลายองค์กร เช่น กรรมการหอพักที่ดูแลและประสานงานกับนักศึกษาในหอพัก, องค์การบริหารที่จัดงานต่าง ๆ, สภานักศึกษาในการถ่วงดุลการใช้งบประมาณ และองค์กรเอกชนที่มหาวิทยาลัยสนับสนุนอย่าง SEDA ที่จัดกิจกรรมต่าง ๆ
+
+พี่เคยเป็นประธานกรรมการหอพัก โดยมีหน้าที่ดูแลน้องๆ ที่เข้ามาใหม่ในหอพักให้คุ้นชินกับมหาวิทยาลัยในช่วงแรกๆ และประสานงานต่างๆ ในหอพัก จนปีที่ 2 พี่ได้เข้าสาขาคอมพิวเตอร์และเป็นรองประธานสาขา ซึ่งได้จัดกิจกรรมกีฬาสีและกีฬาพื้นบ้านให้กับสาขา รวมทั้งกิจกรรมเขียนโปรแกรมภาษาซีสำหรับน้องๆ ที่เข้ามาใหม่ในสาขา
+
+เหตุผลที่พี่อยากทำกิจกรรมเพราะตอนที่เข้ามาใหม่ๆ พี่ได้รับการดูแลจากพี่กรรมการหอพักที่ดีมาก ทำให้พี่อยากเป็นส่วนหนึ่งและส่งต่อสิ่งดีๆ ให้กับน้องๆ รุ่นต่อไป สิ่งที่พี่ได้จากกิจกรรมคือ การเป็นรองประธานสาขาช่วยให้พี่ได้รู้จักอาจารย์ และสามารถติดต่อพูดคุยจนได้อาจารย์ที่ปรึกษาจากรอบโควต้า ซึ่งมี Connection ที่ดี ทำให้สามารถทำโปรเจกต์ร่วมกับองค์กรใหญ่ เช่น การพัฒนาเว็บแอปพลิเคชันให้กับอุทยานวิทยาศาสตร์ภูมิภาคภาคตะวันออกเฉียงเหนือ 2
+</p>
+
+  
 </div>
 
+<!-- ปุ่ม Toggle Lock และ Unlock -->
+<div id="lockUnlockWrapper">
+  <img id="lockUnlockIcon" src="gif/unlock.png" alt="unlock" title="Unlock" onclick="toggleLock()" />
+</div>
+
+<!-- วงกลมครอบไอคอน gift -->
+<div id="giftIconWrapper" title="กดเพื่อฟังเสียง">
+  <img id="giftIcon" src="gif/voice.png" alt="Gift Icon" />
+</div>
+
+<audio id="voiceAudio" src="voice/mix_4m33s (audio-joiner.com).mp3" preload="auto"></audio>
+
 <script>
+  const giftIconWrapper = document.getElementById('giftIconWrapper');
+  const voiceAudio = document.getElementById('voiceAudio');
+
+  giftIconWrapper.addEventListener('click', () => {
+    voiceAudio.play().catch(e => {
+      console.log('เสียงเล่นไม่ได้ อาจต้องรอ interaction:', e);
+    });
+  });
+</script>
+<script>
+  let isLocked = false; // ตัวแปรบอกสถานะของ Lock/Unlock
+  
+
+  // ฟังก์ชัน Toggle Lock/Unlock
+  function toggleLock() {
+    isLocked = !isLocked; // สลับสถานะ lock/unlock
+    const icon = document.getElementById("lockUnlockIcon");
+    
+    // เปลี่ยน icon ขึ้นอยู่กับสถานะ
+    icon.src = isLocked ? "gif/lock.png" : "gif/unlock.png";
+    icon.alt = isLocked ? "lock" : "unlock";
+    
+    // เพิ่ม animation ขยายหด
+    icon.style.transform = isLocked ? "scale(1.2)" : "scale(1)";
+    setTimeout(() => {
+      icon.style.transform = isLocked ? "scale(1)" : "scale(1.2)";
+    }, 300);
+  }
   const container = document.getElementById('container');
 
   function navigateBack() {
-    container.classList.add('slide-out-up');
+    container.classList.add('slide-out-right');
     setTimeout(() => {
       window.location.href = 'index.html';
     }, 500);
   }
+
 
   let touchStartX = 0, touchStartY = 0;
   const threshold = 50;
