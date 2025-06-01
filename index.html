@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -6,14 +6,12 @@
 <title>Index - Main with Exploding Box</title>
 <style>
   html, body {
-  margin: 0; padding: 0; height: 100%;
-  font-family: Arial, sans-serif;
-  background: #4caf50;
-  color: white;
-  overflow: hidden;
-  /* ลบ flexbox ออก เพราะจะใช้ position absolute แทน */
-  /* หรือถ้าอยากใช้ flexbox ให้ลบ position absolute ออก */
-}
+    margin: 0; padding: 0; height: 100%;
+    font-family: Arial, sans-serif;
+    background: #4caf50;
+    color: white;
+    overflow: hidden;
+  }
   #container {
     width: 100vw;
     height: 100vh;
@@ -23,7 +21,7 @@
     user-select: none;
     transition: transform 0.5s ease;
     overflow: visible;
-    opacity: 1; /* แสดงเสมอ */
+    opacity: 1;
   }
 
   /* Slide in from all directions */
@@ -50,39 +48,40 @@
 
   /* กล่อง main box */
   #mainBox {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 200px;
-  background: #388e3c;
-  border-radius: 30px 0 30px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  cursor: pointer;
-  user-select: none;
-  z-index: 10;
-  opacity: 1;
-}
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    background: #388e3c;
+    border-radius: 30px 0 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 
-#explodeGrid {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 200px;
-  height: 200px;
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  gap: 2px;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  z-index: 9;
-}
+  #explodeGrid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 2px;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: 9;
+  }
 
   .explodePiece {
     background: #66bb6a;
@@ -144,7 +143,6 @@
         case 'up': className = 'slide-in-from-bottom'; break;
         case 'down': className = 'slide-in-from-top'; break;
         default:
-          // ไม่มี referer หรือไม่ใช่หน้าในเว็บ
           mainBox.style.opacity = '1';
           container.style.opacity = '1';
           resolve();
@@ -175,17 +173,25 @@
       ease: "power2.out",
       onComplete: () => {
         alert("ระเบิดเรียบร้อย! คุณอาจจะเปลี่ยนหน้าได้ที่นี่");
-        // ซ่อน explodeGrid หลังระเบิด
         explodeGrid.style.opacity = '0';
-        // ถ้าจะรีเซ็ต สามารถเพิ่มโค้ด reset ได้ที่นี่
       }
     });
   }
 
-  // เริ่มต้น
+  // แสดงกล่องระเบิดครั้งแรกเท่านั้น โดยใช้ localStorage เก็บสถานะ
   window.addEventListener('load', async () => {
+    const hasExploded = localStorage.getItem('hasExploded');
     const refPage = getReferrerPage();
+
     await playEntryAnimation(refPage);
+
+    if (!hasExploded) {
+      mainBox.style.opacity = '1';
+      explodeBox();
+      localStorage.setItem('hasExploded', 'true');
+    } else {
+      mainBox.style.opacity = '1';
+    }
   });
 
   // Navigation function แบบเดิม
