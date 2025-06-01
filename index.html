@@ -5,9 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Index - กึ่งกลางธีม มทส.</title>
 <style>
+  /* โหลดฟอนต์ Sk_mayDemo-Regular */
+  @font-face {
+    font-family: 'Mitr';
+    src: url('font/Mitr-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
   html, body {
     margin: 0; padding: 0; height: 100%;
-    font-family: Arial, sans-serif;
+    font-family: 'Mitr', Arial, sans-serif; /* ใช้ฟอนต์ SkMayDemo */
     background: #ffffff;
     color: #555555;
     overflow: hidden;
@@ -32,6 +40,7 @@
     padding: 2vw;
     box-sizing: border-box;
   }
+
   #hiSticker {
     width: 50vw;
     height: auto;
@@ -39,22 +48,26 @@
     margin: 0 auto 3vw auto;
     display: block;
   }
+
   #introText {
     font-size: 4vw;
     margin-bottom: 3vw;
     line-height: 1.4;
   }
+
   #introText h1 {
     color: rgb(242, 101, 34);
     margin-bottom: 0.3em;
     font-weight: bold;
     font-size: 5vw;
   }
+
   #introText h4 {
     color: rgb(109, 110, 112);
     margin-top: 0.1em;
     font-size: 3.5vw;
   }
+
   #container {
     font-size: 4vw;
     color: #555555;
@@ -84,23 +97,29 @@
     margin-top: 5px; /* เพิ่มระยะห่าง */
   }
 
-
   /* วงกลมครอบไอคอน */
-  #giftIconWrapper {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 90px;
-    height: 90px;
-    background: #f58220; /* สีส้ม มทส. */
-    border-radius: 50%; /* ทำให้เป็นวงกลม */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    z-index: 100;
-  }
+#giftIconWrapper {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 90px;
+  height: 90px;
+  background: #f58220; /* สีส้ม มทส. */
+  border-radius: 50%; /* ทำให้เป็นวงกลม */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาที่ชัดเจน */
+  transform: translateY(-5px); /* ทำให้มีมิติที่ลอยขึ้นเล็กน้อย */
+  transition: all 0.3s ease-in-out; /* เพิ่มเอฟเฟกต์การเคลื่อนไหว */
+  z-index: 100;
+}
+
+#giftIconWrapper:hover {
+  transform: translateY(-8px); /* เงาขึ้นเมื่อมีการ hover */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.15); /* เงาที่ใหญ่ขึ้นเมื่อ hover */
+}
 
   #giftIcon {
     width: 60px;
@@ -129,10 +148,10 @@
       width: 45px;
     }
     .text-arrow-container img {
-    width: 20px;
-    height: 20px;
-    margin-top: 5px; /* เพิ่มระยะห่าง */
-  }
+      width: 20px;
+      height: 20px;
+      margin-top: 5px; /* เพิ่มระยะห่าง */
+    }
   }
 </style>
 </head>
@@ -174,10 +193,6 @@
       <img src="img/next-rigth.png" alt="next-rigth" />
       <h6 style="color: #9c27b0;">ชีวิตประจำวัน</h6>
     </div>
-
-    
-
-    
   </div>
 </div>
 
