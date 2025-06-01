@@ -5,60 +5,91 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Up Page</title>
 <style>
-      @font-face {
+  @font-face {
     font-family: 'Mitr';
     src: url('font/Mitr-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
   }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: 'Mitr', Arial, sans-serif;
-  background: url('img/up-bg.jpg') no-repeat left center fixed; /* ตั้งพื้นหลัง */
-  background-size: cover; /* ปรับขนาดให้ครอบคลุมทั้งหน้าจอ */
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Mitr', Arial, sans-serif;
+    background: url('img/up-bg.jpg') no-repeat left center fixed; /* ตั้งพื้นหลัง */
+    background-size: cover; /* ปรับขนาดให้ครอบคลุมทั้งหน้าจอ */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
+  #container {
+    width: 90vw;
+    max-width: 800px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 18px;
+    user-select: none;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: justify;
+    overflow-y: auto;
+    transform: translateY(100vh);
+    animation: slide-in-up 0.5s forwards ease;
+    transition: transform 0.5s ease;
+  }
 
-#container {
-  width: 90vw;
-  max-width: 800px;
-  height: 100vh;
-  display: flex; 
-  align-items: center; 
-  justify-content: center;
-  flex-direction: column;
-  font-size: 18px;
-  user-select: none;
-  padding: 20px;
-  box-sizing: border-box;
-  text-align: justify;
-  overflow-y: auto;
-  
-  /* เริ่มจากล่างเข้ามา */
-  transform: translateY(100vh);
-  animation: slide-in-up 0.5s forwards ease;
-  transition: transform 0.5s ease;
-}
+  @keyframes slide-in-up {
+    to { transform: translateY(0); }
+  }
 
-@keyframes slide-in-up {
-  to { transform: translateY(0); }
-}
+  .slide-out-down {
+    animation: slide-out-down 0.5s forwards ease;
+  }
 
-.slide-out-down {
-  animation: slide-out-down 0.5s forwards ease;
-}
+  @keyframes slide-out-down {
+    to { transform: translateY(100vh); }
+  }
 
-@keyframes slide-out-down {
-  to { transform: translateY(100vh); }
-}
+  /* ปุ่ม toggle lock/unlock */
+  #lockUnlockWrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 90px;
+    height: 90px;
+    background: #f58220; /* สีส้ม มทส. */
+    border-radius: 50%; /* ทำให้เป็นวงกลม */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาที่ชัดเจน */
+    transform: translateY(-5px); /* ทำให้มีมิติที่ลอยขึ้นเล็กน้อย */
+    transition: all 0.3s ease-in-out; /* เพิ่มเอฟเฟกต์การเคลื่อนไหว */
+    z-index: 100;
+  }
 
+  #lockUnlockWrapper:hover {
+    transform: translateY(-8px); /* เงาขึ้นเมื่อมีการ hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.15); /* เงาที่ใหญ่ขึ้นเมื่อ hover */
+  }
+
+  #lockUnlockWrapper img {
+    width: 40px;
+    height: auto;
+    user-select: none;
+    transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+  }
+
+  #lockUnlockWrapper img:hover {
+    transform: scale(1.1);
+  }
 </style>
 </head>
 <body>
@@ -80,14 +111,39 @@ html, body {
   <p>การสหกิจมีลักษณะคล้ายกับการฝึกงาน แต่มีความแตกต่างตรงที่การสหกิจจะได้รับการรับรองจากมหาวิทยาลัยว่าสถานประกอบการนั้นได้มาตรฐาน และสถานประกอบการนั้นต้องวิ่งเข้ามาหามหาวิทยาลัยเอง หากต้องการไปสหกิจกับสถานประกอบการภายนอกมหาวิทยาลัย นักศึกษาจะต้องดำเนินการเอง ส่วนการสหกิจนั้นจะมีเงินเดือนให้แตกต่างจากการฝึกงานที่บางครั้งอาจไม่มีการจ่ายเงินเดือน</p>
 </div>
 
+<!-- ปุ่ม Toggle Lock และ Unlock -->
+<div id="lockUnlockWrapper">
+  <img id="lockUnlockIcon" src="gif/unlock.png" alt="unlock" title="Unlock" onclick="toggleLock()" />
+</div>
+
 <script>
+  let isLocked = false; // ตัวแปรบอกสถานะของ Lock/Unlock
+
+  // ฟังก์ชัน Toggle Lock/Unlock
+  function toggleLock() {
+    isLocked = !isLocked; // สลับสถานะ lock/unlock
+    const icon = document.getElementById("lockUnlockIcon");
+    
+    // เปลี่ยน icon ขึ้นอยู่กับสถานะ
+    icon.src = isLocked ? "gif/lock.png" : "gif/unlock.png";
+    icon.alt = isLocked ? "lock" : "unlock";
+    
+    // เพิ่ม animation ขยายหด
+    icon.style.transform = isLocked ? "scale(1.2)" : "scale(1)";
+    setTimeout(() => {
+      icon.style.transform = isLocked ? "scale(1)" : "scale(1.2)";
+    }, 300);
+  }
+
   const container = document.getElementById('container');
 
   function navigateBack() {
-    container.classList.add('slide-out-down');
-    setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 500);
+    if (!isLocked) {
+      container.classList.add('slide-out-down');
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 500);
+    }
   }
 
   let touchStartX = 0, touchStartY = 0;
@@ -102,15 +158,14 @@ html, body {
     const touchEndY = e.changedTouches[0].screenY;
     const diffY = touchEndY - touchStartY;
 
-    // ตรวจสอบว่าเลื่อนถึงด้านบนสุดหรือไม่
-    if (diffY > threshold && window.scrollY <= 0) {
+    if (diffY > threshold && window.scrollY <= 0 && !isLocked) {
       navigateBack();
     }
   }, {passive:true});
 
   window.addEventListener('keydown', e => {
-    if(e.key === 'ArrowDown' && window.scrollY <= 0) {
-      navigateBack(); // เลื่อนขึ้นถึงสุดหน้าแล้วกลับ
+    if (e.key === 'ArrowDown' && window.scrollY <= 0 && !isLocked) {
+      navigateBack(); 
     }
   });
 </script>
