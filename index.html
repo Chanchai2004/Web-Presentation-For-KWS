@@ -20,6 +20,7 @@
     user-select: none;
     transition: transform 0.5s ease;
     overflow: visible;
+    opacity: 1; /* แสดงเสมอ */
   }
 
   /* Slide in from all directions */
@@ -58,7 +59,8 @@
     cursor: pointer;
     user-select: none;
     z-index: 10;
-    opacity: 0;
+    opacity: 1; /* แสดงเสมอ */
+    transition: opacity 0.3s ease;
   }
 
   /* Grid container สำหรับชิ้นส่วนระเบิด */
@@ -73,6 +75,7 @@
     gap: 2px;
     transform: translate(-50%, -50%);
     pointer-events: none;
+    opacity: 0; /* เริ่มซ่อน */
   }
 
   .explodePiece {
@@ -107,10 +110,6 @@
   }
   const pieces = explodeGrid.querySelectorAll('.explodePiece');
 
-  // ซ่อน mainBox กับ explodeGrid ตอนโหลด
-  mainBox.style.opacity = '0';
-  explodeGrid.style.opacity = '0';
-
   // ตรวจสอบ referer มาจากหน้าไหน เพื่อกำหนด animation เข้า
   function getReferrerPage() {
     try {
@@ -139,7 +138,9 @@
         case 'up': className = 'slide-in-from-bottom'; break;
         case 'down': className = 'slide-in-from-top'; break;
         default:
-          mainBox.style.opacity = '1'; // แสดงกล่องเลย
+          // ไม่มี referer หรือไม่ใช่หน้าในเว็บ
+          mainBox.style.opacity = '1';
+          container.style.opacity = '1';
           resolve();
           return;
       }
@@ -147,6 +148,7 @@
       container.addEventListener('animationend', () => {
         mainBox.style.opacity = '1';
         explodeGrid.style.opacity = '0';
+        container.style.opacity = '1';
         resolve();
       }, {once:true});
     });
@@ -167,7 +169,9 @@
       ease: "power2.out",
       onComplete: () => {
         alert("ระเบิดเรียบร้อย! คุณอาจจะเปลี่ยนหน้าได้ที่นี่");
-        // คุณอาจทำอะไรต่อ เช่นซ่อน explodeGrid หรือรีเซ็ต
+        // ซ่อน explodeGrid หลังระเบิด
+        explodeGrid.style.opacity = '0';
+        // ถ้าจะรีเซ็ต สามารถเพิ่มโค้ด reset ได้ที่นี่
       }
     });
   }
@@ -224,7 +228,6 @@
     }
   });
 
-  // ให้ mainBox คลิกแล้วระเบิด (ทดสอบ)
   mainBox.addEventListener('click', () => {
     explodeBox();
   });
