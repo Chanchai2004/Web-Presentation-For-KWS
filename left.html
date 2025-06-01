@@ -49,14 +49,15 @@ h1, p {
     box-sizing: border-box;
     text-align: justify;
     overflow-y: auto;
-    transform: translateY(100vh);
-    animation: slide-in-up 0.5s forwards ease;
+    transform: translateX(100vw); /* เริ่มจากขวา */
+    animation: slide-in-left 0.5s forwards ease;
     transition: transform 0.5s ease;
-  }
+}
 
-  @keyframes slide-in-up {
-    to { transform: translateY(0); }
-  }
+@keyframes slide-in-left {
+    to { transform: translateX(0); } /* จบที่ตำแหน่งปกติ */
+}
+
 
   .slide-out-down {
     animation: slide-out-down 0.5s forwards ease;
