@@ -3,165 +3,55 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Cross Navigation with Mouse Wheel & Touch Swipe</title>
+<title>Index - Main</title>
 <style>
-  html, body {
-    margin:0; padding:0; height:100%;
-    overflow: hidden;
+  body, html {
+    margin:0; padding:0; overflow:hidden; height:100%;
     font-family: Arial, sans-serif;
-    background: #f0f0f0;
+    background: #4caf50;
+    color: white;
   }
-  .container {
+  #container {
     width: 100vw;
     height: 100vh;
     position: relative;
-    overflow: hidden;
-  }
-  .cross {
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 120px; height: 120px;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-  }
-  /* เครื่องหมายบวก */
-  .cross .bar {
-    position: absolute;
-    background: #4caf50;
-    border-radius: 4px;
-  }
-  .cross .bar.horizontal {
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 20px;
-    transform: translateY(-50%);
-  }
-  .cross .bar.vertical {
-    left: 50%;
-    top: 0;
-    width: 20px;
-    height: 100%;
-    transform: translateX(-50%);
-  }
-
-  .content {
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 300px;
-    height: 200px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
-    font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
     user-select: none;
-    transform: translate(-50%, -50%);
     transition: transform 0.5s ease;
+  }
+  /* slide out animation classes */
+  .slide-left {
+    transform: translateX(-100vw);
+  }
+  .slide-right {
+    transform: translateX(100vw);
+  }
+  .slide-up {
+    transform: translateY(-100vh);
+  }
+  .slide-down {
+    transform: translateY(100vh);
   }
 </style>
 </head>
 <body>
 
-<div class="container">
-
-  <div class="cross" id="cross">
-    <div class="bar horizontal"></div>
-    <div class="bar vertical"></div>
-  </div>
-
-  <div class="content" id="content">
-    <h2>หน้าหลัก</h2>
-    <p>นี่คือหน้าหลัก (กึ่งกลางของเครื่องหมายบวก)</p>
-    <p>เลื่อนขึ้น ลง ซ้าย ขวา เพื่อดูหัวข้อต่าง ๆ</p>
-  </div>
-
-</div>
+<div id="container">หน้าหลัก (index.html)<br>Swipe to navigate (Left, Right, Up, Down)</div>
 
 <script>
-  const content = document.getElementById('content');
-  const cross = document.getElementById('cross');
+  const container = document.getElementById('container');
 
-  // สถานะตำแหน่ง: 'center', 'up', 'down', 'left', 'right'
-  let position = 'center';
-
-  const pages = {
-    center: {
-      title: 'หน้าหลัก',
-      text: 'นี่คือหน้าหลัก (กึ่งกลางของเครื่องหมายบวก)'
-    },
-    up: {
-      title: 'หัวข้อบน',
-      text: 'เนื้อหาของหัวข้อขึ้นบน'
-    },
-    down: {
-      title: 'หัวข้อข้างล่าง',
-      text: 'เนื้อหาของหัวข้อเลื่อนลง'
-    },
-    left: {
-      title: 'หัวข้อซ้าย',
-      text: 'เนื้อหาของหัวข้อเลื่อนไปทางซ้าย'
-    },
-    right: {
-      title: 'หัวข้อขวา',
-      text: 'เนื้อหาของหัวข้อเลื่อนไปทางขวา'
-    }
-  };
-
-  function updatePosition(newPos) {
-    if(newPos === position) return; // ไม่เปลี่ยนถ้าเหมือนเดิม
-
-    // เงื่อนไขล็อก: 
-    // เปลี่ยนทิศอื่นได้ก็ต่อเมื่อ newPos === 'center' หรือ position === 'center'
-    if(newPos !== 'center' && position !== 'center') {
-      alert('ต้องกลับหน้าหลักก่อนครับ!');
-      return;
-    }
-
-    position = newPos;
-
-    content.querySelector('h2').textContent = pages[position].title;
-    content.querySelector('p').textContent = pages[position].text;
-
-    let translateX = 0;
-    let translateY = 0;
-    switch(position) {
-      case 'center': translateX = 0; translateY = 0; break;
-      case 'up': translateX = 0; translateY = -150; break;
-      case 'down': translateX = 0; translateY = 150; break;
-      case 'left': translateX = -150; translateY = 0; break;
-      case 'right': translateX = 150; translateY = 0; break;
-    }
-    cross.style.transform = `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px))`;
-    content.style.transform = `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px))`;
+  function navigateTo(url, direction) {
+    container.classList.add('slide-' + direction);
+    setTimeout(() => {
+      window.location.href = url;
+    }, 500);
   }
 
-  // Mouse wheel event
-  window.addEventListener('wheel', e => {
-    if(e.deltaY < 0) {
-      updatePosition('up');
-    } else if(e.deltaY > 0) {
-      updatePosition('down');
-    }
-  }, {passive:true});
-
-  // Keyboard arrows for testing on desktop
-  window.addEventListener('keydown', e => {
-    if(e.key === 'ArrowLeft') {
-      updatePosition('left');
-    } else if(e.key === 'ArrowRight') {
-      updatePosition('right');
-    } else if(e.key === 'Escape') {
-      updatePosition('center');
-    }
-  });
-
-  // Touch events for swipe support on mobile/tablet
-  let touchStartX = 0;
-  let touchStartY = 0;
-  const swipeThreshold = 50;
+  // Touch swipe
+  let touchStartX = 0, touchStartY = 0;
+  const threshold = 50;
 
   window.addEventListener('touchstart', e => {
     touchStartX = e.changedTouches[0].screenX;
@@ -171,29 +61,33 @@
   window.addEventListener('touchend', e => {
     const touchEndX = e.changedTouches[0].screenX;
     const touchEndY = e.changedTouches[0].screenY;
-
     const diffX = touchEndX - touchStartX;
     const diffY = touchEndY - touchStartY;
 
     if(Math.abs(diffX) > Math.abs(diffY)) {
-      // horizontal swipe
-      if(diffX > swipeThreshold) {
-        updatePosition('right');
-      } else if(diffX < -swipeThreshold) {
-        updatePosition('left');
+      if(diffX > threshold) {
+        navigateTo('right.html', 'right');
+      } else if(diffX < -threshold) {
+        navigateTo('left.html', 'left');
       }
     } else {
-      // vertical swipe
-      if(diffY > swipeThreshold) {
-        updatePosition('down');
-      } else if(diffY < -swipeThreshold) {
-        updatePosition('up');
+      if(diffY > threshold) {
+        navigateTo('down.html', 'down');
+      } else if(diffY < -threshold) {
+        navigateTo('up.html', 'up');
       }
     }
   }, {passive:true});
 
-  // เริ่มต้น
-  updatePosition('center');
+  // Keyboard arrows
+  window.addEventListener('keydown', e => {
+    switch(e.key) {
+      case 'ArrowLeft': navigateTo('left.html', 'left'); break;
+      case 'ArrowRight': navigateTo('right.html', 'right'); break;
+      case 'ArrowUp': navigateTo('up.html', 'up'); break;
+      case 'ArrowDown': navigateTo('down.html', 'down'); break;
+    }
+  });
 </script>
 
 </body>

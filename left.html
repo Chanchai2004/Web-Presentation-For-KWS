@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Left Page</title>
+<style>
+  body, html {
+    margin:0; padding:0; overflow:hidden; height:100%;
+    font-family: Arial, sans-serif;
+    background: #2196f3;
+    color: white;
+  }
+  #container {
+    width: 100vw;
+    height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    user-select: none;
+    transform: translateX(100vw);
+    animation: slide-in-left 0.5s forwards ease;
+    transition: transform 0.5s ease;
+  }
+  @keyframes slide-in-left {
+    to { transform: translateX(0); }
+  }
+  .slide-out-right {
+    animation: slide-out-right 0.5s forwards ease;
+  }
+  @keyframes slide-out-right {
+    to { transform: translateX(100vw); }
+  }
+</style>
+</head>
+<body>
+
+<div id="container">
+  หน้าซ้าย (left.html)<br>Swipe right กลับหน้าหลัก
+</div>
+
+<script>
+  const container = document.getElementById('container');
+
+  function navigateBack() {
+    container.classList.add('slide-out-right');
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 500);
+  }
+
+  // Touch swipe
+  let touchStartX = 0, touchStartY = 0;
+  const threshold = 50;
+
+  window.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, {passive:true});
+
+  window.addEventListener('touchend', e => {
+    const touchEndX = e.changedTouches[0].screenX;
+    const touchEndY = e.changedTouches[0].screenY;
+    const diffX = touchEndX - touchStartX;
+
+    if(diffX > threshold) {
+      navigateBack();
+    }
+  }, {passive:true});
+
+  // Keyboard arrow right
+  window.addEventListener('keydown', e => {
+    if(e.key === 'ArrowRight') {
+      navigateBack();
+    }
+  });
+</script>
+
+</body>
+</html>
