@@ -1,67 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AOS Animation Example</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cross Navigation Concept</title>
+<style>
+  html, body {
+    margin:0; padding:0; height:100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+  }
+  .container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+  .cross {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 120px; height: 120px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+  /* สร้างรูปเครื่องหมายบวก */
+  .cross .bar {
+    position: absolute;
+    background: #4caf50;
+    border-radius: 4px;
+  }
+  .cross .bar.horizontal {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    transform: translateY(-50%);
+  }
+  .cross .bar.vertical {
+    left: 50%;
+    top: 0;
+    width: 20px;
+    height: 100%;
+    transform: translateX(-50%);
+  }
 
-  <!-- โหลด AOS CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  .content {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 300px;
+    height: 200px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    padding: 20px;
+    box-sizing: border-box;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 20px;
+    user-select: none;
+  }
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0 20px;
-      background: #f9f9f9;
-    }
-    .section {
-      max-width: 800px;
-      margin: 60px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    p {
-      font-size: 18px;
-      line-height: 1.6;
-    }
-  </style>
+</style>
 </head>
 <body>
 
-  <div class="section" data-aos="fade-up">
-    <h2>ตอนที่ 1: เริ่มต้นการเดินทาง</h2>
-    <p>เนื้อหาแนะนำงานแนะแนวการศึกษา น้องๆ จะได้รู้จักเส้นทางและโอกาสที่หลากหลาย</p>
+<div class="container">
+
+  <div class="cross" id="cross">
+    <div class="bar horizontal"></div>
+    <div class="bar vertical"></div>
   </div>
 
-  <div class="section" data-aos="fade-left" data-aos-delay="200">
-    <h2>ตอนที่ 2: เลือกทางที่ใช่</h2>
-    <p>แนะนำวิธีการเลือกสายการเรียนและอาชีพตามความชอบและศักยภาพของแต่ละคน</p>
+  <div class="content" id="content">
+    <h2>หน้าหลัก</h2>
+    <p>นี่คือหน้าหลัก (กึ่งกลางของเครื่องหมายบวก)</p>
+    <p>เลื่อนขึ้น ลง ซ้าย ขวา เพื่อดูหัวข้อต่าง ๆ</p>
   </div>
 
-  <div class="section" data-aos="fade-right" data-aos-delay="400">
-    <h2>ตอนที่ 3: วางแผนก้าวต่อไป</h2>
-    <p>สอนการวางแผนเพื่อความสำเร็จในอนาคต ทั้งเรื่องการศึกษาและทักษะที่จำเป็น</p>
-  </div>
+</div>
 
-  <div class="section" data-aos="zoom-in" data-aos-delay="600">
-    <h2>ตอนที่ 4: ก้าวสู่ความสำเร็จ</h2>
-    <p>แรงบันดาลใจและเรื่องราวจากคนที่ประสบความสำเร็จในเส้นทางที่น้องๆ เลือก</p>
-  </div>
+<script>
+  const content = document.getElementById('content');
+  const cross = document.getElementById('cross');
 
-  <!-- โหลด AOS JS -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 1000, // ความเร็ว animation (ms)
-      once: true,     // ให้เล่น animation ครั้งเดียว
-    });
-  </script>
+  // สถานะตำแหน่ง: 'center', 'up', 'down', 'left', 'right'
+  let position = 'center';
+  // จำตำแหน่งก่อนหน้าไว้
+  let lastPosition = 'center';
+
+  // ข้อมูลแต่ละตำแหน่ง
+  const pages = {
+    center: {
+      title: 'หน้าหลัก',
+      text: 'นี่คือหน้าหลัก (กึ่งกลางของเครื่องหมายบวก)'
+    },
+    up: {
+      title: 'หัวข้อบน',
+      text: 'เนื้อหาของหัวข้อขึ้นบน'
+    },
+    down: {
+      title: 'หัวข้อข้างล่าง',
+      text: 'เนื้อหาของหัวข้อเลื่อนลง'
+    },
+    left: {
+      title: 'หัวข้อซ้าย',
+      text: 'เนื้อหาของหัวข้อเลื่อนไปทางซ้าย'
+    },
+    right: {
+      title: 'หัวข้อขวา',
+      text: 'เนื้อหาของหัวข้อเลื่อนไปทางขวา'
+    }
+  };
+
+  // ฟังก์ชันเปลี่ยนเนื้อหาและตำแหน่ง
+  function updatePosition(newPos) {
+    if(newPos === position) return; // ไม่เปลี่ยนถ้าเหมือนเดิม
+
+    // เงื่อนไขล็อก: 
+    // เปลี่ยนทิศอื่นได้ก็ต่อเมื่อ newPos === 'center' หรือ position === 'center'
+    if(newPos !== 'center' && position !== 'center') {
+      // ต้องกลับมาที่กลางก่อนถึงเปลี่ยนทิศได้
+      alert('ต้องกลับหน้าหลักก่อนครับ!');
+      return;
+    }
+
+    position = newPos;
+
+    // อัพเดตเนื้อหา
+    content.querySelector('h2').textContent = pages[position].title;
+    content.querySelector('p').textContent = pages[position].text;
+
+    // ขยับเครื่องหมายบวกตามตำแหน่ง (ขยับ 150px ตามทิศทาง)
+    let translateX = 0;
+    let translateY = 0;
+    switch(position) {
+      case 'center': translateX = 0; translateY = 0; break;
+      case 'up': translateX = 0; translateY = -150; break;
+      case 'down': translateX = 0; translateY = 150; break;
+      case 'left': translateX = -150; translateY = 0; break;
+      case 'right': translateX = 150; translateY = 0; break;
+    }
+    cross.style.transform = `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px))`;
+    content.style.transform = `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px))`;
+  }
+
+  // ฟังชันจับ wheel scroll เลื่อนทิศทาง
+  window.addEventListener('wheel', e => {
+    // แยกทิศทาง scroll
+    if(e.deltaY < 0) {
+      updatePosition('up');
+    } else if(e.deltaY > 0) {
+      updatePosition('down');
+    }
+  });
+
+  // ฟังชันจับปุ่มลูกศรซ้ายขวา
+  window.addEventListener('keydown', e => {
+    if(e.key === 'ArrowLeft') {
+      updatePosition('left');
+    } else if(e.key === 'ArrowRight') {
+      updatePosition('right');
+    } else if(e.key === 'Escape') {
+      updatePosition('center');
+    }
+  });
+
+  // เริ่มต้นตำแหน่งกลาง
+  updatePosition('center');
+</script>
+
 </body>
 </html>
