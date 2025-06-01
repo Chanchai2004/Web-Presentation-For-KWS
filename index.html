@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Index - Main</title>
+<title>Index - Main with Directional Animation</title>
 <style>
   html, body {
     margin:0; padding:0; overflow:hidden; height:100%;
@@ -19,19 +19,66 @@
     font-size: 24px;
     user-select: none;
     transition: transform 0.5s ease;
+    /* เริ่มต้นแบบไม่เลื่อน (ถ้าไม่ได้กำหนด class) */
   }
-  /* slide out animations */
-  .slide-left {
+  /* Slide in from different directions */
+  .slide-in-from-left {
     transform: translateX(-100vw);
+    animation: slide-in-from-left 0.5s forwards ease;
   }
-  .slide-right {
+  .slide-in-from-right {
     transform: translateX(100vw);
+    animation: slide-in-from-right 0.5s forwards ease;
   }
-  .slide-up {
+  .slide-in-from-top {
     transform: translateY(-100vh);
+    animation: slide-in-from-top 0.5s forwards ease;
   }
-  .slide-down {
+  .slide-in-from-bottom {
     transform: translateY(100vh);
+    animation: slide-in-from-bottom 0.5s forwards ease;
+  }
+
+  @keyframes slide-in-from-left {
+    to { transform: translateX(0); }
+  }
+  @keyframes slide-in-from-right {
+    to { transform: translateX(0); }
+  }
+  @keyframes slide-in-from-top {
+    to { transform: translateY(0); }
+  }
+  @keyframes slide-in-from-bottom {
+    to { transform: translateY(0); }
+  }
+
+  /* Popup style */
+  #popup {
+    display: none;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: #333;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    font-size: 20px;
+    z-index: 1000;
+  }
+  #popup.show {
+    display: block;
+    animation: popup-appear 0.3s ease forwards;
+  }
+  @keyframes popup-appear {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -60%) scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
   }
 </style>
 </head>
@@ -39,9 +86,59 @@
 
 <div id="container">หน้าหลัก (index.html)<br>Swipe to navigate (Left, Right, Up, Down)</div>
 
+<div id="popup">Welcome! This is the main page.</div>
+
 <script>
   const container = document.getElementById('container');
+  const popup = document.getElementById('popup');
 
+  // ตรวจสอบ referer (ถ้ามาจากไฟล์ในเว็บนี้)
+  function getReferrerPage() {
+    try {
+      const ref = document.referrer;
+      if (!ref) return null;
+
+      const url = new URL(ref);
+      const path = url.pathname.toLowerCase();
+
+      if (path.endsWith('left.html')) return 'left';
+      if (path.endsWith('right.html')) return 'right';
+      if (path.endsWith('up.html')) return 'up';
+      if (path.endsWith('down.html')) return 'down';
+      return null;
+    } catch {
+      return null;
+    }
+  }
+
+  function playEntryAnimation(fromDirection) {
+    switch(fromDirection) {
+      case 'left':
+        container.classList.add('slide-in-from-right'); // กลับจากซ้าย => เข้า index จากขวา
+        break;
+      case 'right':
+        container.classList.add('slide-in-from-left'); // กลับจากขวา => เข้า index จากซ้าย
+        break;
+      case 'up':
+        container.classList.add('slide-in-from-bottom'); // กลับจากบน => เข้า index จากล่าง
+        break;
+      case 'down':
+        container.classList.add('slide-in-from-top'); // กลับจากล่าง => เข้า index จากบน
+        break;
+      default:
+        // ไม่มี referer หรือไม่ใช่หน้าในเว็บนี้ => แสดง popup
+        popup.classList.add('show');
+        break;
+    }
+  }
+
+  // เรียกใช้งานตอนโหลดหน้า
+  window.addEventListener('load', () => {
+    const refPage = getReferrerPage();
+    playEntryAnimation(refPage);
+  });
+
+  // Navigation logic เหมือนเดิม (swipe, keyboard)
   function navigateTo(url, direction) {
     container.classList.add('slide-' + direction);
     setTimeout(() => {
@@ -49,7 +146,6 @@
     }, 500);
   }
 
-  // Touch swipe
   let touchStartX = 0, touchStartY = 0;
   const threshold = 50;
 
@@ -79,7 +175,6 @@
     }
   }, {passive:true});
 
-  // Keyboard arrows
   window.addEventListener('keydown', e => {
     switch(e.key) {
       case 'ArrowLeft': navigateTo('left.html', 'left'); break;
