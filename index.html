@@ -12,57 +12,94 @@
     color: #555555;
     overflow: hidden;
     display: flex;
-    justify-content: center;  /* แนวนอนกึ่งกลาง */
-    align-items: center;      /* แนวตั้งกึ่งกลาง */
+    justify-content: center;
+    align-items: center;
   }
   #wrapper {
     text-align: center;
-    max-width: 600px;
-    padding: 20px;
+    max-width: 90vw;
+    padding: 2vw;
     box-sizing: border-box;
   }
   #hiSticker {
-    width: 180px;
+    width: 50vw;
     height: auto;
     user-select: none;
-    margin: 0 auto 15px auto;
+    margin: 0 auto 3vw auto;
     display: block;
   }
   #introText {
-    font-size: 22px;
-    margin-bottom: 20px;
+    font-size: 4vw;
+    margin-bottom: 3vw;
     line-height: 1.4;
   }
   #introText h1 {
-    color: rgb(242, 101, 34); /* ส้ม */
-    margin-bottom: 0.2em;
+    color: rgb(242, 101, 34);
+    margin-bottom: 0.3em;
     font-weight: bold;
+    font-size: 5vw;
   }
   #introText h4 {
-    color: rgb(109, 110, 112); /* เทา */
+    color: rgb(109, 110, 112);
     margin-top: 0.1em;
+    font-size: 3.5vw;
   }
   #container {
-    font-size: 24px;
+    font-size: 4vw;
     color: #555555;
     user-select: none;
   }
-  #giftExplode {
+
+  /* วงกลมครอบไอคอน */
+  #giftIconWrapper {
     position: fixed;
-    top: 50%; left: 50%;
-    width: 300px;
-    height: 300px;
-    transform: translate(-50%, -50%);
-    z-index: 20;
+    bottom: 20px;
+    right: 20px;
+    width: 90px;
+    height: 90px;
+    background: #f58220; /* สีส้ม มทส. */
+    border-radius: 50%; /* ทำให้เป็นวงกลม */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 100;
+  }
+
+  #giftIcon {
+    width: 60px;
+    height: auto;
+    user-select: none;
+  }
+
+  /* ปรับข้อความมือถือ */
+  @media (max-width: 400px) {
+    #introText h1 {
+      font-size: 6vw;
+    }
+    #introText h4 {
+      font-size: 4vw;
+    }
+    #container {
+      font-size: 4.5vw;
+    }
+    #giftIconWrapper {
+      width: 70px;
+      height: 70px;
+      bottom: 15px;
+      right: 15px;
+    }
+    #giftIcon {
+      width: 45px;
+    }
   }
 </style>
 </head>
 <body>
 
-<img id="giftExplode" src="Gift.gif" alt="Gift Explode Animation" />
-
-<div id="wrapper" style="display:none;">
-  <img id="hiSticker" src="Hi2.gif" alt="เด็กน้อยสติ๊กเกอร์" />
+<div id="wrapper">
+  <img id="hiSticker" src="gif/Hi2.gif" alt="เด็กน้อยสติ๊กเกอร์" />
   <div id="introText">
     <h1>
       สวัสดีครับ<br>
@@ -70,53 +107,26 @@
     </h1>
     <h4>
       วันนี้พี่อยากมาแบ่งปันประสบการณ์ตรงเกี่ยวกับชีวิตและการเรียนที่นี่<br>
-      ผ่านเรื่องราวของผมเอง เพื่อให้น้องๆ ได้เห็นภาพและเตรียมตัวได้ดีขึ้นครับ/ค่ะ
+      ผ่านเรื่องราวของผมเอง เพื่อให้น้องๆ ได้เห็นภาพและเตรียมตัวได้ดีขึ้นครับ
     </h4>
-  </div>
-  <div id="container">
-    หน้าหลัก (index.html)<br>Swipe to navigate (Left, Right, Up, Down)
   </div>
 </div>
 
+<!-- วงกลมครอบไอคอน gift -->
+<div id="giftIconWrapper" title="กดเพื่อฟังเสียง">
+  <img id="giftIcon" src="gif/voice.png" alt="Gift Icon" />
+</div>
+
+<audio id="voiceAudio" src="voice/main.mp3" preload="auto"></audio>
+
 <script>
-  const giftExplode = document.getElementById('giftExplode');
-  const wrapper = document.getElementById('wrapper');
+  const giftIconWrapper = document.getElementById('giftIconWrapper');
+  const voiceAudio = document.getElementById('voiceAudio');
 
-  function getReferrerPage() {
-    try {
-      const ref = document.referrer;
-      if (!ref) return null;
-      const url = new URL(ref);
-      const path = url.pathname.toLowerCase();
-      if (path.endsWith('left.html')) return 'left';
-      if (path.endsWith('right.html')) return 'right';
-      if (path.endsWith('up.html')) return 'up';
-      if (path.endsWith('down.html')) return 'down';
-      return null;
-    } catch {
-      return null;
-    }
-  }
-
-  function playEntryAnimation(fromDirection) {
-    return new Promise((resolve) => {
-      resolve();
+  giftIconWrapper.addEventListener('click', () => {
+    voiceAudio.play().catch(e => {
+      console.log('เสียงเล่นไม่ได้ อาจต้องรอ interaction:', e);
     });
-  }
-
-  window.addEventListener('load', async () => {
-    const refPage = getReferrerPage();
-
-    giftExplode.style.display = 'block';
-    wrapper.style.display = 'none';
-
-    setTimeout(async () => {
-      giftExplode.style.display = 'none';
-
-      wrapper.style.display = 'block';
-
-      await playEntryAnimation(refPage);
-    }, 4000);
   });
 
   function navigateTo(url, direction) {
