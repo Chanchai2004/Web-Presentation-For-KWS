@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Index - Main with Directional Animation</title>
+<title>Index - Main with Exploding Box</title>
 <style>
   html, body {
     margin:0; padding:0; overflow:hidden; height:100%;
@@ -19,9 +19,10 @@
     font-size: 24px;
     user-select: none;
     transition: transform 0.5s ease;
-    /* เริ่มต้นแบบไม่เลื่อน (ถ้าไม่ได้กำหนด class) */
+    overflow: visible;
   }
-  /* Slide in from different directions */
+
+  /* Slide in from all directions */
   .slide-in-from-left {
     transform: translateX(-100vw);
     animation: slide-in-from-left 0.5s forwards ease;
@@ -38,66 +39,83 @@
     transform: translateY(100vh);
     animation: slide-in-from-bottom 0.5s forwards ease;
   }
+  @keyframes slide-in-from-left { to { transform: translateX(0); } }
+  @keyframes slide-in-from-right { to { transform: translateX(0); } }
+  @keyframes slide-in-from-top { to { transform: translateY(0); } }
+  @keyframes slide-in-from-bottom { to { transform: translateY(0); } }
 
-  @keyframes slide-in-from-left {
-    to { transform: translateX(0); }
-  }
-  @keyframes slide-in-from-right {
-    to { transform: translateX(0); }
-  }
-  @keyframes slide-in-from-top {
-    to { transform: translateY(0); }
-  }
-  @keyframes slide-in-from-bottom {
-    to { transform: translateY(0); }
+  /* กล่อง main box */
+  #mainBox {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: #388e3c;
+    border-radius: 30px 0 30px 0; /* มุมโค้งเฉียง */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+    opacity: 0;
   }
 
-  /* Popup style */
-  #popup {
-    display: none;
-    position: fixed;
+  /* Grid container สำหรับชิ้นส่วนระเบิด */
+  #explodeGrid {
+    position: absolute;
     top: 50%; left: 50%;
+    width: 200px;
+    height: 200px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 2px;
     transform: translate(-50%, -50%);
-    background: white;
-    color: #333;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    font-size: 20px;
-    z-index: 1000;
+    pointer-events: none;
   }
-  #popup.show {
-    display: block;
-    animation: popup-appear 0.3s ease forwards;
+
+  .explodePiece {
+    background: #66bb6a;
+    border-radius: 10px 0 10px 0;
+    opacity: 1;
   }
-  @keyframes popup-appear {
-    from {
-      opacity: 0;
-      transform: translate(-50%, -60%) scale(0.8);
-    }
-    to {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-  }
+
 </style>
 </head>
 <body>
 
 <div id="container">หน้าหลัก (index.html)<br>Swipe to navigate (Left, Right, Up, Down)</div>
 
-<div id="popup">Welcome! This is the main page.</div>
+<!-- กล่อง main -->
+<div id="mainBox">กดเพื่อระเบิด!</div>
 
+<!-- Grid สำหรับอนิเมชันระเบิด -->
+<div id="explodeGrid"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
   const container = document.getElementById('container');
-  const popup = document.getElementById('popup');
+  const mainBox = document.getElementById('mainBox');
+  const explodeGrid = document.getElementById('explodeGrid');
 
-  // ตรวจสอบ referer (ถ้ามาจากไฟล์ในเว็บนี้)
+  // สร้าง grid ชิ้นส่วนระเบิด 10x10 = 100 ชิ้น
+  for(let i=0; i<100; i++) {
+    const div = document.createElement('div');
+    div.classList.add('explodePiece');
+    explodeGrid.appendChild(div);
+  }
+  const pieces = explodeGrid.querySelectorAll('.explodePiece');
+
+  // ซ่อน mainBox กับ explodeGrid ตอนโหลด
+  mainBox.style.opacity = '0';
+  explodeGrid.style.opacity = '0';
+
+  // ตรวจสอบ referer มาจากหน้าไหน เพื่อกำหนด animation เข้า
   function getReferrerPage() {
     try {
       const ref = document.referrer;
       if (!ref) return null;
-
       const url = new URL(ref);
       const path = url.pathname.toLowerCase();
 
@@ -111,34 +129,56 @@
     }
   }
 
+  // เล่น animation เข้า container และแสดงกล่องหลังจบ
   function playEntryAnimation(fromDirection) {
-    switch(fromDirection) {
-      case 'left':
-        container.classList.add('slide-in-from-right'); // กลับจากซ้าย => เข้า index จากขวา
-        break;
-      case 'right':
-        container.classList.add('slide-in-from-left'); // กลับจากขวา => เข้า index จากซ้าย
-        break;
-      case 'up':
-        container.classList.add('slide-in-from-bottom'); // กลับจากบน => เข้า index จากล่าง
-        break;
-      case 'down':
-        container.classList.add('slide-in-from-top'); // กลับจากล่าง => เข้า index จากบน
-        break;
-      default:
-        // ไม่มี referer หรือไม่ใช่หน้าในเว็บนี้ => แสดง popup
-        popup.classList.add('show');
-        break;
-    }
+    return new Promise((resolve) => {
+      let className = '';
+      switch(fromDirection) {
+        case 'left': className = 'slide-in-from-right'; break;
+        case 'right': className = 'slide-in-from-left'; break;
+        case 'up': className = 'slide-in-from-bottom'; break;
+        case 'down': className = 'slide-in-from-top'; break;
+        default:
+          mainBox.style.opacity = '1'; // แสดงกล่องเลย
+          resolve();
+          return;
+      }
+      container.classList.add(className);
+      container.addEventListener('animationend', () => {
+        mainBox.style.opacity = '1';
+        explodeGrid.style.opacity = '0';
+        resolve();
+      }, {once:true});
+    });
   }
 
-  // เรียกใช้งานตอนโหลดหน้า
-  window.addEventListener('load', () => {
+  // ฟังก์ชันเล่นระเบิดกล่อง
+  function explodeBox() {
+    mainBox.style.opacity = '0';
+    explodeGrid.style.opacity = '1';
+
+    gsap.to(pieces, {
+      duration: 1.2,
+      x: () => (Math.random() - 0.5) * 500,
+      y: () => (Math.random() - 0.5) * 500,
+      rotation: () => (Math.random() - 0.5) * 720,
+      opacity: 0,
+      stagger: 0.02,
+      ease: "power2.out",
+      onComplete: () => {
+        alert("ระเบิดเรียบร้อย! คุณอาจจะเปลี่ยนหน้าได้ที่นี่");
+        // คุณอาจทำอะไรต่อ เช่นซ่อน explodeGrid หรือรีเซ็ต
+      }
+    });
+  }
+
+  // เริ่มต้น
+  window.addEventListener('load', async () => {
     const refPage = getReferrerPage();
-    playEntryAnimation(refPage);
+    await playEntryAnimation(refPage);
   });
 
-  // Navigation logic เหมือนเดิม (swipe, keyboard)
+  // Navigation function แบบเดิม
   function navigateTo(url, direction) {
     container.classList.add('slide-' + direction);
     setTimeout(() => {
@@ -182,6 +222,11 @@
       case 'ArrowUp': navigateTo('up.html', 'up'); break;
       case 'ArrowDown': navigateTo('down.html', 'down'); break;
     }
+  });
+
+  // ให้ mainBox คลิกแล้วระเบิด (ทดสอบ)
+  mainBox.addEventListener('click', () => {
+    explodeBox();
   });
 </script>
 
