@@ -16,7 +16,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: 'Mitr', Arial, sans-serif; /* ใช้ฟอนต์ Mitr */
+  font-family: 'Mitr', Arial, sans-serif;
   background: url('img/up-bg.jpg') no-repeat left center fixed; /* ตั้งพื้นหลัง */
   background-size: cover; /* ปรับขนาดให้ครอบคลุมทั้งหน้าจอ */
   color: #ffffff;
@@ -102,14 +102,15 @@ html, body {
     const touchEndY = e.changedTouches[0].screenY;
     const diffY = touchEndY - touchStartY;
 
-    if(diffY > threshold) {
+    // ตรวจสอบว่าเลื่อนถึงด้านบนสุดหรือไม่
+    if (diffY > threshold && window.scrollY <= 0) {
       navigateBack();
     }
   }, {passive:true});
 
   window.addEventListener('keydown', e => {
-    if(e.key === 'ArrowDown') {
-      navigateBack();
+    if(e.key === 'ArrowDown' && window.scrollY <= 0) {
+      navigateBack(); // เลื่อนขึ้นถึงสุดหน้าแล้วกลับ
     }
   });
 </script>
