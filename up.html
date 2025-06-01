@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Up Page</title>
 <style>
-  body, html {
+  html, body {
     margin:0; padding:0; overflow:hidden; height:100%;
     font-family: Arial, sans-serif;
     background: #9c27b0;
@@ -17,6 +17,8 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 24px;
     user-select: none;
+
+    /* เริ่มจากล่างเข้ามา */
     transform: translateY(100vh);
     animation: slide-in-up 0.5s forwards ease;
     transition: transform 0.5s ease;

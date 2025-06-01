@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Left Page</title>
 <style>
-  body, html {
+  html, body {
     margin:0; padding:0; overflow:hidden; height:100%;
     font-family: Arial, sans-serif;
     background: #2196f3;
@@ -17,6 +17,8 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 24px;
     user-select: none;
+
+    /* เริ่มจากขวาเข้ามา */
     transform: translateX(100vw);
     animation: slide-in-left 0.5s forwards ease;
     transition: transform 0.5s ease;
@@ -24,6 +26,8 @@
   @keyframes slide-in-left {
     to { transform: translateX(0); }
   }
+
+  /* animation slide ออกไปขวา (กลับหน้า index) */
   .slide-out-right {
     animation: slide-out-right 0.5s forwards ease;
   }
@@ -59,7 +63,6 @@
 
   window.addEventListener('touchend', e => {
     const touchEndX = e.changedTouches[0].screenX;
-    const touchEndY = e.changedTouches[0].screenY;
     const diffX = touchEndX - touchStartX;
 
     if(diffX > threshold) {

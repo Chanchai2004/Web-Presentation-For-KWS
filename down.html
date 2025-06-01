@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Down Page</title>
 <style>
-  body, html {
+  html, body {
     margin:0; padding:0; overflow:hidden; height:100%;
     font-family: Arial, sans-serif;
     background: #ff9800;
@@ -17,6 +17,8 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 24px;
     user-select: none;
+
+    /* เริ่มจากบนเข้ามา */
     transform: translateY(-100vh);
     animation: slide-in-down 0.5s forwards ease;
     transition: transform 0.5s ease;
@@ -35,7 +37,7 @@
 <body>
 
 <div id="container">
-  ล่าง (down.html)<br>Swipe up กลับหน้าหลัก
+  หน้าล่าง (down.html)<br>Swipe up กลับหน้าหลัก
 </div>
 
 <script>
