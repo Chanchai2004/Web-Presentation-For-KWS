@@ -5,42 +5,211 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Right Page</title>
 <style>
-  html, body {
-    margin:0; padding:0; overflow:hidden; height:100%;
-    font-family: Arial, sans-serif;
-    background: #f44336;
-    color: white;
+  @font-face {
+    font-family: 'Mitr';
+    src: url('font/Mitr-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
   }
-  #container {
-    width: 100vw;
-    height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px;
-    user-select: none;
 
-    /* เริ่มจากซ้ายเข้ามา */
-    transform: translateX(-100vw);
-    animation: slide-in-right 0.5s forwards ease;
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Mitr', Arial, sans-serif;
+    background: url('img/right-bg.jpg') no-repeat left center fixed; /* ตั้งพื้นหลัง */
+    background-size: cover; /* ปรับขนาดให้ครอบคลุมทั้งหน้าจอ */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #container {
+    width: 90vw;
+    max-width: 800px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 18px;
+    user-select: none;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: justify;
+    overflow-y: auto;
+    transform: translateY(100vh);
+    animation: slide-in-up 0.5s forwards ease;
     transition: transform 0.5s ease;
   }
-  @keyframes slide-in-right {
-    to { transform: translateX(0); }
+
+  @keyframes slide-in-up {
+    to { transform: translateY(0); }
   }
-  .slide-out-left {
-    animation: slide-out-left 0.5s forwards ease;
+
+  .slide-out-down {
+    animation: slide-out-down 0.5s forwards ease;
   }
-  @keyframes slide-out-left {
-    to { transform: translateX(-100vw); }
+
+  @keyframes slide-out-down {
+    to { transform: translateY(100vh); }
   }
+
+  #giftIconWrapper {
+  position: fixed;
+  bottom: 130px;
+  right: 20px;
+  width: 90px;
+  height: 90px;
+  background: #f58220; /* สีส้ม มทส. */
+  border-radius: 50%; /* ทำให้เป็นวงกลม */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาที่ชัดเจน */
+  transform: translateY(-5px); /* ทำให้มีมิติที่ลอยขึ้นเล็กน้อย */
+  transition: all 0.3s ease-in-out; /* เพิ่มเอฟเฟกต์การเคลื่อนไหว */
+  z-index: 100;
+}
+
+#giftIconWrapper:hover {
+  transform: translateY(-8px); /* เงาขึ้นเมื่อมีการ hover */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.15); /* เงาที่ใหญ่ขึ้นเมื่อ hover */
+}
+
+  #giftIcon {
+    width: 60px;
+    height: auto;
+    user-select: none;
+  }
+
+  /* ปุ่ม toggle lock/unlock */
+  #lockUnlockWrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 90px;
+    height: 90px;
+    background: #f58220; /* สีส้ม มทส. */
+    border-radius: 50%; /* ทำให้เป็นวงกลม */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาที่ชัดเจน */
+    transform: translateY(-5px); /* ทำให้มีมิติที่ลอยขึ้นเล็กน้อย */
+    transition: all 0.3s ease-in-out; /* เพิ่มเอฟเฟกต์การเคลื่อนไหว */
+    z-index: 100;
+  }
+
+  #lockUnlockWrapper:hover {
+    transform: translateY(-8px); /* เงาขึ้นเมื่อมีการ hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.15); /* เงาที่ใหญ่ขึ้นเมื่อ hover */
+  }
+
+  #lockUnlockWrapper img {
+    width: 40px;
+    height: auto;
+    user-select: none;
+    transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+  }
+
+  #lockUnlockWrapper img:hover {
+    transform: scale(1.1);
+  }
+
+  /* ปุ่มเสียง (Voice) */
+  #voiceWrapper {
+    position: fixed;
+    bottom: 120px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: #2196F3; /* สีฟ้า */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาที่ชัดเจน */
+    transform: translateY(-5px); /* ทำให้มีมิติที่ลอยขึ้นเล็กน้อย */
+    transition: all 0.3s ease-in-out;
+    z-index: 99;
+  }
+
+  #voiceWrapper:hover {
+    transform: translateY(-8px); /* เงาขึ้นเมื่อมีการ hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.15); /* เงาที่ใหญ่ขึ้นเมื่อ hover */
+  }
+
+  #voiceWrapper img {
+    width: 40px;
+    height: auto;
+    user-select: none;
+  }
+
+  #voiceWrapper img:hover {
+    transform: scale(1.1);
+  }
+
 </style>
 </head>
 <body>
 
 <div id="container">
-  หน้าขวา (right.html)<br>Swipe left กลับหน้าหลัก
+  <h1>การใช้ชีวิต</h1>
+  <p>การใช้ชีวิตในมหาวิทยาลัยแตกต่างจากช่วงมัธยมมาก เนื่องจากเราจะไม่เริ่มเรียนแต่เช้าเหมือนในมัธยม และตารางเรียนก็ไม่จำเป็นต้องเป็นตั้งแต่ 8 โมงเช้าถึง 5 โมงเย็นอีกต่อไป การเรียนจะแบ่งเป็นวิชาเช้าและบ่ายตามที่เราลงทะเบียน ส่วนใหญ่จะเริ่มเรียนตั้งแต่ 2 ชั่วโมงขึ้นไป ซึ่งแตกต่างจากมัธยมที่มีเวลาเรียนในแต่ละวิชาไม่เกินชั่วโมงเดียว อีกทั้งเนื้อหาที่เรียนในมหาวิทยาลัยจะมีความเข้มข้นขึ้น ทำให้บางครั้งเรารู้สึกว่าเวลาเรียนยังไม่ถึงชั่วโมงก็อาจจะรู้สึกหนักแล้ว
+
+ในเรื่องของการจัดการเวลา ชีวิตในมหาวิทยาลัยขึ้นอยู่กับตัวเราเองว่าอยากทำอะไรและจะจัดการเวลายังไง บางคนแบ่งเวลาลำบากอาจจะส่งผลกระทบต่อการเรียน เช่น ตื่นสาย เข้าไม่ทันเลคเชอร์ หรือเข้าไม่ทันแลป ซึ่งทั้งหมดนี้สามารถส่งผลต่อเกรดของเราได้ โดยเฉพาะในปีแรกที่มีการปรับตัว หากเราไม่โฟกัสกับการเรียน อาจทำให้เราพลาดโอกาสสำคัญไป ซึ่งมักจะเป็นสาเหตุของการรีไทร์ โดยเฉพาะกลุ่มที่ให้ความสนใจกับการใช้มือถือมากกว่าการเรียน
+
+ในส่วนของอาหารการกินก็มีตัวเลือกมากมายในมหาวิทยาลัย ซึ่งช่วยเพิ่มความสะดวกสบายให้กับชีวิต แต่การเลือกกินอาหารที่ดีและถูกสุขอนามัยก็เป็นสิ่งสำคัญที่จะช่วยให้เราเรียนได้ดีและมีพลังในการทำกิจกรรมต่างๆ</p>
+
+  
 </div>
 
+<!-- ปุ่ม Toggle Lock และ Unlock -->
+<div id="lockUnlockWrapper">
+  <img id="lockUnlockIcon" src="gif/unlock.png" alt="unlock" title="Unlock" onclick="toggleLock()" />
+</div>
+
+<!-- วงกลมครอบไอคอน gift -->
+<div id="giftIconWrapper" title="กดเพื่อฟังเสียง">
+  <img id="giftIcon" src="gif/voice.png" alt="Gift Icon" />
+</div>
+
+<audio id="voiceAudio" src="voice/right.mp3" preload="auto"></audio>
+
 <script>
+  const giftIconWrapper = document.getElementById('giftIconWrapper');
+  const voiceAudio = document.getElementById('voiceAudio');
+
+  giftIconWrapper.addEventListener('click', () => {
+    voiceAudio.play().catch(e => {
+      console.log('เสียงเล่นไม่ได้ อาจต้องรอ interaction:', e);
+    });
+  });
+</script>
+<script>
+  let isLocked = false; // ตัวแปรบอกสถานะของ Lock/Unlock
+  
+
+  // ฟังก์ชัน Toggle Lock/Unlock
+  function toggleLock() {
+    isLocked = !isLocked; // สลับสถานะ lock/unlock
+    const icon = document.getElementById("lockUnlockIcon");
+    
+    // เปลี่ยน icon ขึ้นอยู่กับสถานะ
+    icon.src = isLocked ? "gif/lock.png" : "gif/unlock.png";
+    icon.alt = isLocked ? "lock" : "unlock";
+    
+    // เพิ่ม animation ขยายหด
+    icon.style.transform = isLocked ? "scale(1.2)" : "scale(1)";
+    setTimeout(() => {
+      icon.style.transform = isLocked ? "scale(1)" : "scale(1.2)";
+    }, 300);
+  }
   const container = document.getElementById('container');
 
   function navigateBack() {
