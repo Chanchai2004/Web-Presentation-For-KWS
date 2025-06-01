@@ -2,32 +2,66 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Click Counter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AOS Animation Example</title>
+
+  <!-- โหลด AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0 20px;
+      background: #f9f9f9;
+    }
+    .section {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+  </style>
 </head>
 <body>
-  <h1>Click Counter</h1>
-  <button id="clickBtn">คลิกฉันสิ</button>
-  <div>จำนวนคลิก: <span id="count">0</span></div>
 
+  <div class="section" data-aos="fade-up">
+    <h2>ตอนที่ 1: เริ่มต้นการเดินทาง</h2>
+    <p>เนื้อหาแนะนำงานแนะแนวการศึกษา น้องๆ จะได้รู้จักเส้นทางและโอกาสที่หลากหลาย</p>
+  </div>
+
+  <div class="section" data-aos="fade-left" data-aos-delay="200">
+    <h2>ตอนที่ 2: เลือกทางที่ใช่</h2>
+    <p>แนะนำวิธีการเลือกสายการเรียนและอาชีพตามความชอบและศักยภาพของแต่ละคน</p>
+  </div>
+
+  <div class="section" data-aos="fade-right" data-aos-delay="400">
+    <h2>ตอนที่ 3: วางแผนก้าวต่อไป</h2>
+    <p>สอนการวางแผนเพื่อความสำเร็จในอนาคต ทั้งเรื่องการศึกษาและทักษะที่จำเป็น</p>
+  </div>
+
+  <div class="section" data-aos="zoom-in" data-aos-delay="600">
+    <h2>ตอนที่ 4: ก้าวสู่ความสำเร็จ</h2>
+    <p>แรงบันดาลใจและเรื่องราวจากคนที่ประสบความสำเร็จในเส้นทางที่น้องๆ เลือก</p>
+  </div>
+
+  <!-- โหลด AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    const btn = document.getElementById('clickBtn');
-    const countSpan = document.getElementById('count');
-
-    btn.addEventListener('click', () => {
-      fetch('/click', { method: 'POST' })
-        .then(response => response.json())
-        .then(data => {
-          countSpan.innerText = data.count;
-        })
-        .catch(err => {
-          console.error('Error:', err);
-        });
+    AOS.init({
+      duration: 1000, // ความเร็ว animation (ms)
+      once: true,     // ให้เล่น animation ครั้งเดียว
     });
-
-    // โหลดค่าเริ่มต้น (optional)
-    fetch('/click', { method: 'POST' })  // หรือทำ API GET แยกสำหรับอ่าน count
-      .then(r => r.json())
-      .then(d => countSpan.innerText = d.count);
   </script>
 </body>
 </html>
