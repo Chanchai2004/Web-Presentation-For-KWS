@@ -17,7 +17,7 @@ html, body {
     padding: 0;
     height: 100%;
     font-family: 'Mitr', Arial, sans-serif;
-    background: url('resized_and_sharpened_images/right-bg.jpg') no-repeat center center fixed;
+    background: rgba(0, 0, 0, 1) url('img/right-bg.png') no-repeat center center fixed;
     background-size: cover; /* ปรับขนาดให้ครอบคลุมทั้งหน้าจอ */
     background-position: center center; /* วางภาพให้อยู่ตรงกลาง */
     background-attachment: fixed; /* ทำให้พื้นหลังไม่เลื่อน */
@@ -35,14 +35,14 @@ html, body {
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+
     flex-direction: column;
     font-size: 18px;
     user-select: none;
     padding: 20px;
     box-sizing: border-box;
     text-align: justify;
-    overflow-y: auto;
+
     transform: translateX(-100vw); /* เริ่มจากขวา */
     animation: slide-in-left 0.5s forwards ease;
     transition: transform 0.5s ease;
@@ -60,17 +60,19 @@ html, body {
     to { transform: translateY(100vh); }
   }
 
-  h1, p {
+
+
+  h1,h2, p {
   color: white; /* สีตัวอักษร */
   text-shadow: 1px 1px 2px black, -1px -1px 2px black; /* เพิ่มขอบดำ */
 }
 
   #giftIconWrapper {
   position: fixed;
-  bottom: 130px;
+  bottom: 100px;
   right: 20px;
-  width: 90px;
-  height: 90px;
+  width: 60px;
+  height: 60px;
   background: #f58220; /* สีส้ม มทส. */
   border-radius: 50%; /* ทำให้เป็นวงกลม */
   display: flex;
@@ -89,7 +91,7 @@ html, body {
 }
 
   #giftIcon {
-    width: 60px;
+    width: 40px;
     height: auto;
     user-select: none;
   }
@@ -99,8 +101,8 @@ html, body {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 90px;
-    height: 90px;
+    width: 60px;
+    height: 60px;
     background: #f58220; /* สีส้ม มทส. */
     border-radius: 50%; /* ทำให้เป็นวงกลม */
     display: flex;
@@ -119,7 +121,7 @@ html, body {
   }
 
   #lockUnlockWrapper img {
-    width: 40px;
+    width: 30px;
     height: auto;
     user-select: none;
     transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
@@ -163,19 +165,35 @@ html, body {
     transform: scale(1.1);
   }
 
+  #MotivationSticker {
+    width: 30vw;
+    height: auto;
+    user-select: none;
+    margin: 0 auto 3vw auto;
+    display: block;
+  }
+  
+  strong{
+    color: #9c27b0;
+  }
+
 </style>
 </head>
 <body>
 
 <div id="container">
-  <h1>การใช้ชีวิต</h1>
-  <p>การใช้ชีวิตในมหาวิทยาลัยแตกต่างจากช่วงมัธยมมาก เนื่องจากเราจะไม่เริ่มเรียนแต่เช้าเหมือนในมัธยม และตารางเรียนก็ไม่จำเป็นต้องเป็นตั้งแต่ 8 โมงเช้าถึง 5 โมงเย็นอีกต่อไป การเรียนจะแบ่งเป็นวิชาเช้าและบ่ายตามที่เราลงทะเบียน ส่วนใหญ่จะเริ่มเรียนตั้งแต่ 2 ชั่วโมงขึ้นไป ซึ่งแตกต่างจากมัธยมที่มีเวลาเรียนในแต่ละวิชาไม่เกินชั่วโมงเดียว อีกทั้งเนื้อหาที่เรียนในมหาวิทยาลัยจะมีความเข้มข้นขึ้น ทำให้บางครั้งเรารู้สึกว่าเวลาเรียนยังไม่ถึงชั่วโมงก็อาจจะรู้สึกหนักแล้ว
+  <img id="#MotivationSticker" src="gif/motivation2.gif" alt="เด็กน้อยสติ๊กเกอร์" />
+  <h1 style="color: #9c27b0;" >การใช้ชีวิต</h1>
 
-ในเรื่องของการจัดการเวลา ชีวิตในมหาวิทยาลัยขึ้นอยู่กับตัวเราเองว่าอยากทำอะไรและจะจัดการเวลายังไง บางคนแบ่งเวลาลำบากอาจจะส่งผลกระทบต่อการเรียน เช่น ตื่นสาย เข้าไม่ทันเลคเชอร์ หรือเข้าไม่ทันแลป ซึ่งทั้งหมดนี้สามารถส่งผลต่อเกรดของเราได้ โดยเฉพาะในปีแรกที่มีการปรับตัว หากเราไม่โฟกัสกับการเรียน อาจทำให้เราพลาดโอกาสสำคัญไป ซึ่งมักจะเป็นสาเหตุของการรีไทร์ โดยเฉพาะกลุ่มที่ให้ความสนใจกับการใช้มือถือมากกว่าการเรียน
+<h2><strong>ความแตกต่างจากชีวิตมัธยม</strong></h2>
+<p>การใช้ชีวิตในมหาวิทยาลัยแตกต่างจากช่วงมัธยมมาก เนื่องจากเราจะไม่เริ่มเรียนแต่เช้าเหมือนในมัธยม และตารางเรียนก็ไม่จำเป็นต้องเป็นตั้งแต่ 8 โมงเช้าถึง 5 โมงเย็นอีกต่อไป การเรียนจะแบ่งเป็นวิชาเช้าและบ่ายตามที่เราลงทะเบียน ส่วนใหญ่จะเริ่มเรียนตั้งแต่ 2 ชั่วโมงขึ้นไป ซึ่งแตกต่างจากมัธยมที่มีเวลาเรียนในแต่ละวิชาไม่เกินชั่วโมงเดียว อีกทั้งเนื้อหาที่เรียนในมหาวิทยาลัยจะมีความเข้มข้นขึ้น ทำให้บางครั้งเรารู้สึกว่าเวลาเรียนยังไม่ถึงชั่วโมงก็อาจจะรู้สึกหนักแล้ว</p>
 
-ในส่วนของอาหารการกินก็มีตัวเลือกมากมายในมหาวิทยาลัย ซึ่งช่วยเพิ่มความสะดวกสบายให้กับชีวิต แต่การเลือกกินอาหารที่ดีและถูกสุขอนามัยก็เป็นสิ่งสำคัญที่จะช่วยให้เราเรียนได้ดีและมีพลังในการทำกิจกรรมต่างๆ</p>
+<h2><strong>การจัดการเวลาในมหาวิทยาลัย</strong></h2>
+<p>ในเรื่องของการจัดการเวลา ชีวิตในมหาวิทยาลัยขึ้นอยู่กับตัวเราเองว่าอยากทำอะไรและจะจัดการเวลายังไง บางคนแบ่งเวลาลำบากอาจจะส่งผลกระทบต่อการเรียน เช่น ตื่นสาย เข้าไม่ทันเลคเชอร์ หรือเข้าไม่ทันแลป ซึ่งทั้งหมดนี้สามารถส่งผลต่อเกรดของเราได้ โดยเฉพาะในปีแรกที่มีการปรับตัว หากเราไม่โฟกัสกับการเรียน อาจทำให้เราพลาดโอกาสสำคัญไป ซึ่งมักจะเป็นสาเหตุของการรีไทร์ โดยเฉพาะกลุ่มที่ให้ความสนใจกับการใช้มือถือมากกว่าการเรียน</p>
 
-  
+<h2><strong>อาหารการกินในมหาวิทยาลัย</strong></h2>
+<p>ในส่วนของอาหารการกินก็มีตัวเลือกมากมายในมหาวิทยาลัย ซึ่งช่วยเพิ่มความสะดวกสบายให้กับชีวิต แต่การเลือกกินอาหารที่ดีและถูกสุขอนามัยก็เป็นสิ่งสำคัญที่จะช่วยให้เราเรียนได้ดีและมีพลังในการทำกิจกรรมต่างๆ</p>
+
 </div>
 
 <!-- ปุ่ม Toggle Lock และ Unlock -->
@@ -202,54 +220,97 @@ html, body {
 </script>
 <script>
   let isLocked = false; // ตัวแปรบอกสถานะของ Lock/Unlock
-  
 
-  // ฟังก์ชัน Toggle Lock/Unlock
-  function toggleLock() {
-    isLocked = !isLocked; // สลับสถานะ lock/unlock
-    const icon = document.getElementById("lockUnlockIcon");
-    
-    // เปลี่ยน icon ขึ้นอยู่กับสถานะ
-    icon.src = isLocked ? "gif/lock.png" : "gif/unlock.png";
-    icon.alt = isLocked ? "lock" : "unlock";
-    
-    // เพิ่ม animation ขยายหด
-    icon.style.transform = isLocked ? "scale(1.2)" : "scale(1)";
-    setTimeout(() => {
-      icon.style.transform = isLocked ? "scale(1)" : "scale(1.2)";
-    }, 300);
+// ฟังก์ชัน Toggle Lock/Unlock
+function toggleLock() {
+  isLocked = !isLocked; // สลับสถานะ lock/unlock
+  const icon = document.getElementById("lockUnlockIcon");
+
+  // เปลี่ยน icon ขึ้นอยู่กับสถานะ
+  icon.src = isLocked ? "gif/lock.png" : "gif/unlock.png";
+  icon.alt = isLocked ? "lock" : "unlock";
+
+  // เพิ่ม animation ขยายหด
+  icon.style.transform = isLocked ? "scale(1.2)" : "scale(1)";
+  setTimeout(() => {
+    icon.style.transform = isLocked ? "scale(1)" : "scale(1.2)";
+  }, 300);
+}
+
+const container = document.getElementById('container');
+
+// ฟังก์ชัน navigateBack ใช้เมื่อเราต้องการเปลี่ยนหน้า
+function navigateBack() {
+  container.classList.add('slide-out-left');  // เปลี่ยนเป็น slide-out-left แทนการเลื่อนขวา
+  setTimeout(() => {
+    window.location.href = 'index.html'; // เปลี่ยนหน้าไปที่ index.html
+  }, 500);
+}
+
+// สำหรับ Touch Events (มือถือ/แท็บเล็ต)
+let touchStartX = 0, touchStartY = 0;
+const threshold = 50;
+
+window.addEventListener('touchstart', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+window.addEventListener('touchend', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  const touchEndX = e.changedTouches[0].screenX;
+  const diffX = touchEndX - touchStartX;  // ใช้ diffX แทน diffY
+
+  if (diffX < -threshold) {  // เลื่อนซ้าย
+    console.log("เลื่อนซ้าย (จากทัชสกรีน)");
+    navigateBack(); // เรียกฟังก์ชัน navigateBack เพื่อเปลี่ยนหน้า
   }
-  const container = document.getElementById('container');
+}, { passive: true });
 
-  function navigateBack() {
-    container.classList.add('slide-out-left');
-    setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 500);
+// สำหรับ Mouse Events (Desktop)
+let mouseStartX = 0, mouseStartY = 0;
+let isMouseDown = false; // ใช้ตรวจสอบว่าเมาส์ถูกกดค้างหรือไม่
+
+// เมื่อคลิกซ้ายค้าง
+window.addEventListener('mousedown', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  if (e.button === 0) { // ตรวจสอบว่าเป็นคลิกซ้าย
+    mouseStartX = e.screenX;
+    mouseStartY = e.screenY;
+    isMouseDown = true;
   }
+});
 
-  let touchStartX = 0, touchStartY = 0;
-  const threshold = 50;
+// เมื่อเริ่มการลาก
+window.addEventListener('mousemove', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  if (isMouseDown) {
+    const diffX = e.screenX - mouseStartX;  // ใช้ diffX แทน diffY
 
-  window.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-  }, {passive:true});
-
-  window.addEventListener('touchend', e => {
-    const touchEndX = e.changedTouches[0].screenX;
-    const diffX = touchEndX - touchStartX;
-
-    if(diffX < -threshold) {
-      navigateBack();
+    if (diffX < -threshold) {  // เลื่อนซ้าย
+      console.log("เลื่อนซ้าย (จากเมาส์)");
+      navigateBack(); // เรียกฟังก์ชัน navigateBack เพื่อเปลี่ยนหน้า
     }
-  }, {passive:true});
+  }
+});
 
-  window.addEventListener('keydown', e => {
-    if(e.key === 'ArrowLeft') {
-      navigateBack();
-    }
-  });
+// เมื่อปล่อยคลิก
+window.addEventListener('mouseup', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  if (isMouseDown) {
+    isMouseDown = false; // หยุดการตรวจจับเมื่อปล่อยคลิก
+  }
+});
+
+// ปุ่ม Arrow
+window.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft' && !isLocked) {  // กดปุ่มลูกศรซ้าย
+    console.log("เลื่อนซ้าย (จากปุ่มลูกศร)");
+    navigateBack(); // เรียกฟังก์ชัน navigateBack เพื่อเปลี่ยนหน้า
+  }
+});
+
 </script>
 
 </body>

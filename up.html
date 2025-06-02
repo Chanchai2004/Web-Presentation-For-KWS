@@ -17,7 +17,7 @@ html, body {
     padding: 0;
     height: 100%;
     font-family: 'Mitr', Arial, sans-serif;
-    background: url('img/up-bg.jpeg') no-repeat left center fixed;
+    background: rgba(0, 0, 0, 1) url('img/up-bg.png') no-repeat left center fixed;
     background-size: cover; /* ปรับขนาดให้ครอบคลุมทั้งหน้าจอ */
     background-position: center center; /* วางภาพให้อยู่ตรงกลาง */
     background-attachment: fixed; /* ทำให้พื้นหลังไม่เลื่อน */
@@ -42,19 +42,18 @@ html, body {
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+
     flex-direction: column;
     font-size: 18px;
     user-select: none;
     padding: 20px;
     box-sizing: border-box;
     text-align: justify;
-    overflow-y: auto;
     transform: translateY(100vh);
     animation: slide-in-up 0.5s forwards ease;
     transition: transform 0.5s ease;
   }
-  h1, p {
+  h1,h2, p {
   color: white; /* สีตัวอักษร */
   text-shadow: 1px 1px 2px black, -1px -1px 2px black; /* เพิ่มขอบดำ */
 }
@@ -71,12 +70,20 @@ html, body {
     to { transform: translateY(100vh); }
   }
 
+  #ConfuSticker {
+    width: 30vw;
+    height: auto;
+    user-select: none;
+    margin: 0 auto 3vw auto;
+    display: block;
+  }
+
   #giftIconWrapper {
   position: fixed;
-  bottom: 130px;
+  bottom: 100px;
   right: 20px;
-  width: 90px;
-  height: 90px;
+  width: 60px;
+  height: 60px;
   background: #f58220; /* สีส้ม มทส. */
   border-radius: 50%; /* ทำให้เป็นวงกลม */
   display: flex;
@@ -95,7 +102,7 @@ html, body {
 }
 
   #giftIcon {
-    width: 60px;
+    width: 40px;
     height: auto;
     user-select: none;
   }
@@ -105,8 +112,8 @@ html, body {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 90px;
-    height: 90px;
+    width: 60px;
+    height: 60px;
     background: #f58220; /* สีส้ม มทส. */
     border-radius: 50%; /* ทำให้เป็นวงกลม */
     display: flex;
@@ -125,7 +132,7 @@ html, body {
   }
 
   #lockUnlockWrapper img {
-    width: 40px;
+    width: 30px;
     height: auto;
     user-select: none;
     transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
@@ -169,24 +176,29 @@ html, body {
     transform: scale(1.1);
   }
 
+  strong{
+    color: #f58220;
+  }
+
 </style>
 </head>
 <body>
 
 <div id="container">
-  <h1>การรับเข้า</h1>
+  <img id="ConfuSticker" src="gif/confused2.gif" alt="เด็กน้อยสติ๊กเกอร์" />
+  <h1 style="color: #f58220;">การรับเข้ามหาวิทยาลัย</h1>
   <p>การรับเข้ามหาวิทยาลัยจะมีหลายรอบเหมือนกับมหาวิทยาลัยอื่นๆ โดยรอบแรกจะเป็นรอบพอร์ต ซึ่งนักศึกษาจะติดจากรอบนี้ แต่สำหรับคณะวิศวกรรมศาสตร์ในรอบนี้จะเป็นการรับเข้าทั่วไป ยังไม่มีการเลือกสาขา ต้องไปเลือกสาขาในปีที่ 2 ในปีการศึกษา 2568 นี้จะมีบางสาขาที่เปิดรับตรง โดยใช้ผลงานจากโครงการสอวน หรือโครงงาน ในการคัดเลือกเป็นหลัก</p>
 
-  <h1>การเลือกสาขา</h1>
+  <h2><strong>การเลือกสาขา</strong></h2>
   <p>เมื่อเข้ามาปี 1 ในคณะวิศวกรรมศาสตร์ ทุกคนจะยังไม่มีสาขาเว้นแต่บางคนที่เข้ามาด้วยโครงการรับตรงหรือโครงการพิเศษที่สาขาจัดขึ้น ส่วนมากนักศึกษาปี 1 จะเรียนเหมือนกันทั้งหมดไม่ว่าจะเป็นสาขาวิศวกรรมศาสตร์ใด จากนั้นจะได้เกรดที่ใช้คำนวณเป็นเกรด Point ซึ่งเกรด Point นี้จะมีความสำคัญมากในการเลือกสาขา เนื่องจากระบบจะเรียงลำดับจากคนที่เก็บเกรด Point ได้มากไปน้อย จากนั้นให้เราเลือกสาขาที่ต้องการตามลำดับความชอบ โดยระบบจะให้ผู้ที่มีเกรด Point สูงที่สุดได้เลือกสาขาก่อน ดังนั้น โอกาสในการได้สาขาที่ต้องการจะขึ้นอยู่กับเกรด Point ที่เราได้รับ</p>
 
-  <h1>วิชาเรียน</h1>
+  <h2><strong>วิชาเรียน</strong></h2>
   <p>ในปี 1 ของคณะวิศวกรรมศาสตร์ ทุกคนจะเรียนเหมือนกัน โดยจะมีวิชาพื้นฐานที่ต้องเรียน เช่น แคลคูลัส 1, 2, 3, ฟิสิกส์ 1, ฟิสิกส์ 2, เคมี 1, คอมพิวเตอร์พื้นฐาน, โปรแกรมมิ่ง 1 และวิชาทั่วไปเกี่ยวกับปรัชญา เมื่อถึงปลายปี 2 จะเริ่มเรียนวิชาเฉพาะสาขา ในกรณีของพี่ที่เรียนวิศวกรรมคอมพิวเตอร์ ปี 2 พี่จะเริ่มเรียนเน้นเกี่ยวกับฮาร์ดแวร์ เช่น วงจรไฟฟ้า, วงจรดิจิตอล, ไมโครคอนโทรลเลอร์ และพื้นฐานของ Object-Oriented Programming (OOP), Database เป็นต้น ในปี 3 การเรียนจะเน้นไปที่วิชาเลือกตามสาขาวิชา โดยวิชาเลือกเหล่านี้จะมีอาจารย์ผู้เชี่ยวชาญในแต่ละด้านมาสอน เช่น อาจารย์ที่เก่งด้าน AI ก็จะสอนวิชาเกี่ยวกับ AI, อาจารย์ที่เก่งด้านฮาร์ดแวร์ก็จะสอนเกี่ยวกับฮาร์ดแวร์, อาจารย์ที่เก่งด้าน IoT ก็จะสอนเกี่ยวกับ IoT และอาจารย์ที่เชี่ยวชาญด้านเว็บแอปพลิเคชันก็จะสอนเกี่ยวกับ Web App</p>
 
-  <h1>อาจารย์ที่ปรึกษา</h1>
+  <h2><strong>อาจารย์ที่ปรึกษา</strong></h2>
   <p>การเลือกอาจารย์ที่ปรึกษาส่วนใหญ่จะขึ้นอยู่กับแต่ละสาขา โดยจะมีสองประเภทหลักๆ คือ 1) การเลือกโดยพิจารณาจากโครงงานที่นักศึกษานำเสนอ 2) การเลือกโดยพิจารณาจากเกรด ซึ่งแต่ละสาขาจะมีวิธีการจัดการที่แตกต่างกันไป</p>
 
-  <h1>สหกิจ</h1>
+  <h2><strong>สหกิจ</h2></strong>
   <p>การสหกิจมีลักษณะคล้ายกับการฝึกงาน แต่มีความแตกต่างตรงที่การสหกิจจะได้รับการรับรองจากมหาวิทยาลัยว่าสถานประกอบการนั้นได้มาตรฐาน และสถานประกอบการนั้นต้องวิ่งเข้ามาหามหาวิทยาลัยเอง หากต้องการไปสหกิจกับสถานประกอบการภายนอกมหาวิทยาลัย นักศึกษาจะต้องดำเนินการเอง ส่วนการสหกิจนั้นจะมีเงินเดือนให้แตกต่างจากการฝึกงานที่บางครั้งอาจไม่มีการจ่ายเงินเดือน</p>
 </div>
 
@@ -213,60 +225,99 @@ html, body {
   });
 </script>
 <script>
-  let isLocked = false; // ตัวแปรบอกสถานะของ Lock/Unlock
-  
+ let isLocked = false; // ตัวแปรบอกสถานะของ Lock/Unlock
 
-  // ฟังก์ชัน Toggle Lock/Unlock
-  function toggleLock() {
-    isLocked = !isLocked; // สลับสถานะ lock/unlock
-    const icon = document.getElementById("lockUnlockIcon");
-    
-    // เปลี่ยน icon ขึ้นอยู่กับสถานะ
-    icon.src = isLocked ? "gif/lock.png" : "gif/unlock.png";
-    icon.alt = isLocked ? "lock" : "unlock";
-    
-    // เพิ่ม animation ขยายหด
-    icon.style.transform = isLocked ? "scale(1.2)" : "scale(1)";
-    setTimeout(() => {
-      icon.style.transform = isLocked ? "scale(1)" : "scale(1.2)";
-    }, 300);
+// ฟังก์ชัน Toggle Lock/Unlock
+function toggleLock() {
+  isLocked = !isLocked; // สลับสถานะ lock/unlock
+  const icon = document.getElementById("lockUnlockIcon");
+
+  // เปลี่ยน icon ขึ้นอยู่กับสถานะ
+  icon.src = isLocked ? "gif/lock.png" : "gif/unlock.png";
+  icon.alt = isLocked ? "lock" : "unlock";
+
+  // เพิ่ม animation ขยายหด
+  icon.style.transform = isLocked ? "scale(1.2)" : "scale(1)";
+  setTimeout(() => {
+    icon.style.transform = isLocked ? "scale(1)" : "scale(1.2)";
+  }, 300);
+}
+
+const container = document.getElementById('container');
+
+// ฟังก์ชัน navigateBack ใช้เมื่อเราต้องการเปลี่ยนหน้า
+function navigateBack() {
+  container.classList.add('slide-out-right');
+  setTimeout(() => {
+    window.location.href = 'index.html'; // เปลี่ยนหน้าไปที่ index.html
+  }, 500);
+}
+
+// สำหรับ Touch Events (มือถือ/แท็บเล็ต)
+let touchStartX = 0, touchStartY = 0;
+const threshold = 50;
+
+window.addEventListener('touchstart', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+window.addEventListener('touchend', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  const touchEndY = e.changedTouches[0].screenY;
+  const diffY = touchEndY - touchStartY;
+
+  if (diffY > threshold) {  // เลื่อนลง
+    console.log("เลื่อนลง (จากทัชสกรีน)");
+    navigateBack(); // เรียกฟังก์ชัน navigateBack เพื่อเปลี่ยนหน้า
   }
+}, { passive: true });
 
-  // ฟังก์ชัน Toggle Voice
-  
-  const container = document.getElementById('container');
+// สำหรับ Mouse Events (Desktop)
+let mouseStartX = 0, mouseStartY = 0;
+let isMouseDown = false; // ใช้ตรวจสอบว่าเมาส์ถูกกดค้างหรือไม่
 
-  function navigateBack() {
-    if (!isLocked) {
-      container.classList.add('slide-out-down');
-      setTimeout(() => {
-        window.location.href = 'index.html';
-      }, 500);
+// เมื่อคลิกซ้ายค้าง
+window.addEventListener('mousedown', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  if (e.button === 0) { // ตรวจสอบว่าเป็นคลิกซ้าย
+    mouseStartX = e.screenX;
+    mouseStartY = e.screenY;
+    isMouseDown = true;
+  }
+});
+
+// เมื่อเริ่มการลาก
+window.addEventListener('mousemove', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  if (isMouseDown) {
+    const diffY = e.screenY - mouseStartY;
+
+    if (diffY > threshold) {  // เลื่อนลง
+      console.log("เลื่อนลง (จากเมาส์)");
+      navigateBack(); // เรียกฟังก์ชัน navigateBack เพื่อเปลี่ยนหน้า
     }
   }
+});
 
-  let touchStartX = 0, touchStartY = 0;
-  const threshold = 50;
+// เมื่อปล่อยคลิก
+window.addEventListener('mouseup', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  if (isMouseDown) {
+    isMouseDown = false; // หยุดการตรวจจับเมื่อปล่อยคลิก
+  }
+});
 
-  window.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-  }, {passive:true});
+// ปุ่ม Arrow
+window.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown' && !isLocked) {  // กดปุ่มลูกศรลง
+    console.log("เลื่อนลง (จากปุ่มลูกศร)");
+    navigateBack(); // เรียกฟังก์ชัน navigateBack เพื่อเปลี่ยนหน้า
+  }
+});
 
-  window.addEventListener('touchend', e => {
-    const touchEndY = e.changedTouches[0].screenY;
-    const diffY = touchEndY - touchStartY;
 
-    if (diffY > threshold && window.scrollY <= 0 && !isLocked) {
-      navigateBack();
-    }
-  }, {passive:true});
-
-  window.addEventListener('keydown', e => {
-    if (e.key === 'ArrowDown' && window.scrollY <= 0 && !isLocked) {
-      navigateBack(); 
-    }
-  });
 </script>
 
 </body>

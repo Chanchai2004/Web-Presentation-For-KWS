@@ -1,44 +1,47 @@
-from PIL import Image, ImageEnhance
+from moviepy import *
+from PIL import Image
 import os
-from tkinter import Tk
-from tkinter.filedialog import askdirectory
+import tkinter as tk
+from tkinter import filedialog
 
-# สร้างหน้าต่าง Tkinter (ไม่แสดงหน้าต่างหลัก)
-Tk().withdraw()
+# ฟังก์ชันสำหรับเลือกโฟลเดอร์จาก GUI
+def select_folder():
+    root = tk.Tk()
+    root.withdraw()  # ซ่อนหน้าต่างหลักของ Tkinter
+    folder_selected = filedialog.askdirectory()  # เปิด dialog box ให้เลือกโฟลเดอร์
+    return folder_selected
 
-# เปิดหน้าต่างให้เลือกโฟลเดอร์
-folder_path = askdirectory(title="เลือกโฟลเดอร์ที่มีภาพ")
+# ฟังก์ชันสำหรับสร้างวิดีโอจากภาพที่อัปโหลด
+def create_video_from_images(image_folder, output_filename="output_video.mp4", frame_duration=5, resolution=(1920, 1080)):
+    images = []
 
-# ตรวจสอบว่าเลือกโฟลเดอร์หรือไม่
-if folder_path:
-    # สร้างโฟลเดอร์ใหม่สำหรับเก็บภาพที่ปรับขนาดแล้ว
-    output_folder = os.path.join(folder_path, 'images')
-    os.makedirs(output_folder, exist_ok=True)
+    # โหลดภาพทั้งหมดจากโฟลเดอร์ที่กำหนด และจัดเรียงตามชื่อไฟล์จากน้อยไปมาก
+    image_files = sorted(os.listdir(image_folder), key=lambda x: int(x.split('.')[0]))  # จัดเรียงตามหมายเลขในชื่อไฟล์
+    for filename in image_files:
+        if filename.endswith(".jpg") or filename.endswith(".png"):  # ตรวจสอบนามสกุลไฟล์
+            image_path = os.path.join(image_folder, filename)
+            img = Image.open(image_path)
 
-    # วนลูปตรวจสอบไฟล์ทั้งหมดในโฟลเดอร์
-    for filename in os.listdir(folder_path):
-        file_path = os.path.join(folder_path, filename)
+            # ปรับขนาดภาพให้ตรงกับ resolution ที่กำหนด
+            img = img.resize(resolution)
+            images.append(img)
 
-        # ตรวจสอบว่าไฟล์เป็นภาพหรือไม่
-        if filename.lower().endswith(('.jpg', '.jpeg', '.png')):
-            try:
-                # เปิดภาพ
-                with Image.open(file_path) as img:
-                    # เปลี่ยนขนาดภาพเป็น 1920x1080
-                    resized_img = img.resize((1920, 1080))
+    # สร้างคลิปจากภาพที่โหลดมา
+    clips = []
+    for img in images:
+        # สร้างแอนิเมชันให้ภาพเลื่อน
+        img_clip = ImageClip(img).set_duration(frame_duration)
+        clips.append(img_clip)
 
-                    # ทำให้ภาพชัดขึ้น
-                    enhancer = ImageEnhance.Sharpness(resized_img)
-                    sharpened_img = enhancer.enhance(2.0)  # ค่า 1.0 คือไม่มีการเปลี่ยนแปลง, ค่า 2.0 คือเพิ่มความชัด
+    # รวมคลิปภาพทั้งหมด
+    final_clip = concatenate_videoclips(clips, method="compose")
+    final_clip.write_videofile(output_filename, fps=24)  # สร้างวิดีโอใน 24 fps
 
-                    # บันทึกภาพที่ปรับขนาดและทำให้ชัดขึ้นแล้วลงในโฟลเดอร์ใหม่
-                    output_path = os.path.join(output_folder, filename)
-                    sharpened_img.save(output_path)
+# เลือกโฟลเดอร์
+image_folder = select_folder()
 
-                    print(f"Image {filename} resized, sharpened, and saved to {output_folder}")
-            except Exception as e:
-                print(f"Error processing {filename}: {e}")
-
-    print("Image resizing and sharpening complete.")
+# ตรวจสอบว่าโฟลเดอร์ถูกเลือกหรือไม่
+if image_folder:
+    create_video_from_images(image_folder)
 else:
-    print("No folder selected.")
+    print("ไม่ได้เลือกโฟลเดอร์")

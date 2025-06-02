@@ -17,7 +17,7 @@ html, body {
     padding: 0;
     height: 100%;
     font-family: 'Mitr', Arial, sans-serif;
-    background: url('img/down-bg.jpg') no-repeat center center fixed;
+    background: rgba(0, 0, 0, 1) url('img/down-bg.jpg') no-repeat center center fixed;
     background-size: cover; /* ปรับขนาดให้ครอบคลุมทั้งหน้าจอ */
     background-position: center center; /* วางภาพให้อยู่ตรงกลาง */
     background-attachment: fixed; /* ทำให้พื้นหลังไม่เลื่อน */
@@ -29,7 +29,7 @@ html, body {
     animation: backgroundSwitch 370s infinite; /* เปลี่ยนเวลาเป็น 30 วินาที */
     
 }
-h1, p {
+h1,h2, p {
   color: white; /* สีตัวอักษร */
   text-shadow: 1px 1px 2px black, -1px -1px 2px black; /* เพิ่มขอบดำ */
 }
@@ -320,10 +320,10 @@ h1, p {
 
   #giftIconWrapper {
   position: fixed;
-  bottom: 130px;
+  bottom: 100px;
   right: 20px;
-  width: 90px;
-  height: 90px;
+  width: 60px;
+  height: 60px;
   background: #f58220; /* สีส้ม มทส. */
   border-radius: 50%; /* ทำให้เป็นวงกลม */
   display: flex;
@@ -342,7 +342,7 @@ h1, p {
 }
 
   #giftIcon {
-    width: 60px;
+    width: 40px;
     height: auto;
     user-select: none;
   }
@@ -352,8 +352,8 @@ h1, p {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 90px;
-    height: 90px;
+    width: 60px;
+    height: 60px;
     background: #f58220; /* สีส้ม มทส. */
     border-radius: 50%; /* ทำให้เป็นวงกลม */
     display: flex;
@@ -372,7 +372,7 @@ h1, p {
   }
 
   #lockUnlockWrapper img {
-    width: 40px;
+    width: 30px;
     height: auto;
     user-select: none;
     transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
@@ -415,19 +415,26 @@ h1, p {
   #voiceWrapper img:hover {
     transform: scale(1.1);
   }
+  strong{
+    color: #4caf50;
+  }
 
 </style>
 </head>
 <body>
 
 <div id="container">
-  <h1>กิจกรรม</h1>
-  <p>ในแต่ละปี มหาวิทยาลัยจะจัดกิจกรรมน้อยกว่ามหาวิทยาลัยอื่นๆ ตัวอย่างเช่น กิจกรรมปีใหม่, สงกรานต์, ผิงไฟหน้าหนาว, ดูหนังกลางแปลง, ชมรมต่าง ๆ, รับน้องใหม่, กีฬาสี, วิ่งเกียร์ที่จัดโดยคณะวิศวกรรมศาสตร์ และกิจกรรม Research to Market รวมถึงกิจกรรมอื่น ๆ ที่จัดโดยหลายองค์กร เช่น กรรมการหอพักที่ดูแลและประสานงานกับนักศึกษาในหอพัก, องค์การบริหารที่จัดงานต่าง ๆ, สภานักศึกษาในการถ่วงดุลการใช้งบประมาณ และองค์กรเอกชนที่มหาวิทยาลัยสนับสนุนอย่าง SEDA ที่จัดกิจกรรมต่าง ๆ
+<h1 style="color: #4caf50;">กิจกรรม</h1>
 
-พี่เคยเป็นประธานกรรมการหอพัก โดยมีหน้าที่ดูแลน้องๆ ที่เข้ามาใหม่ในหอพักให้คุ้นชินกับมหาวิทยาลัยในช่วงแรกๆ และประสานงานต่างๆ ในหอพัก จนปีที่ 2 พี่ได้เข้าสาขาคอมพิวเตอร์และเป็นรองประธานสาขา ซึ่งได้จัดกิจกรรมกีฬาสีและกีฬาพื้นบ้านให้กับสาขา รวมทั้งกิจกรรมเขียนโปรแกรมภาษาซีสำหรับน้องๆ ที่เข้ามาใหม่ในสาขา
+<h2><strong>กิจกรรมที่จัดในมหาวิทยาลัย</strong></h2>
+<p>ในแต่ละปี มหาวิทยาลัยจะจัดกิจกรรมน้อยกว่ามหาวิทยาลัยอื่นๆ เพราะเนื้อหากับเวลาเรียนเข้มข้นมาก ตัวอย่างเช่นกิจกรรมต่างๆ เช่น กิจกรรมปีใหม่, สงกรานต์, ผิงไฟหน้าหนาว, ดูหนังกลางแปลง, ชมรมต่าง ๆ, รับน้องใหม่, กีฬาสี, วิ่งเกียร์ที่จัดโดยคณะวิศวกรรมศาสตร์ และกิจกรรม Research to Market รวมถึงกิจกรรมอื่น ๆ ที่จัดโดยหลายองค์กร เช่น กรรมการหอพักที่ดูแลและประสานงานกับนักศึกษาในหอพัก, องค์การบริหารที่จัดงานต่าง ๆ, สภานักศึกษาในการถ่วงดุลการใช้งบประมาณ และองค์กรเอกชนที่มหาวิทยาลัยสนับสนุนอย่าง SEDA ที่จัดกิจกรรมต่าง ๆ</p>
 
-เหตุผลที่พี่อยากทำกิจกรรมเพราะตอนที่เข้ามาใหม่ๆ พี่ได้รับการดูแลจากพี่กรรมการหอพักที่ดีมาก ทำให้พี่อยากเป็นส่วนหนึ่งและส่งต่อสิ่งดีๆ ให้กับน้องๆ รุ่นต่อไป สิ่งที่พี่ได้จากกิจกรรมคือ การเป็นรองประธานสาขาช่วยให้พี่ได้รู้จักอาจารย์ และสามารถติดต่อพูดคุยจนได้อาจารย์ที่ปรึกษาจากรอบโควต้า ซึ่งมี Connection ที่ดี ทำให้สามารถทำโปรเจกต์ร่วมกับองค์กรใหญ่ เช่น การพัฒนาเว็บแอปพลิเคชันให้กับอุทยานวิทยาศาสตร์ภูมิภาคภาคตะวันออกเฉียงเหนือ 2
-</p>
+<h2><strong>ประสบการณ์จากกิจกรรม</strong></h2>
+<p>พี่เคยเป็นประธานกรรมการหอพัก โดยมีหน้าที่ดูแลน้องๆ ที่เข้ามาใหม่ในหอพักให้คุ้นชินกับมหาวิทยาลัยในช่วงแรกๆ และประสานงานต่างๆ ในหอพัก จนปีที่ 2 พี่ได้เข้าสาขาคอมพิวเตอร์และเป็นรองประธานสาขา ซึ่งได้จัดกิจกรรมกีฬาสีและกีฬาพื้นบ้านให้กับสาขา รวมทั้งกิจกรรมเขียนโปรแกรมภาษาซีสำหรับน้องๆ ที่เข้ามาใหม่ในสาขา</p>
+
+<h2><strong>เหตุผลที่ทำกิจกรรม</strong></h2>
+<p>เหตุผลที่พี่อยากทำกิจกรรมเพราะตอนที่เข้ามาใหม่ๆ พี่ได้รับการดูแลจากพี่กรรมการหอพักที่ดีมาก ทำให้พี่อยากเป็นส่วนหนึ่งและส่งต่อสิ่งดีๆ ให้กับน้องๆ รุ่นต่อไป สิ่งที่พี่ได้จากกิจกรรมคือ การเป็นรองประธานสาขาช่วยให้พี่ได้รู้จักอาจารย์ และสามารถติดต่อพูดคุยจนได้อาจารย์ที่ปรึกษาจากรอบโควต้า ซึ่งมี Connection ที่ดี ทำให้สามารถทำโปรเจกต์ร่วมกับองค์กรใหญ่ เช่น การพัฒนาเว็บแอปพลิเคชันให้กับอุทยานวิทยาศาสตร์ภูมิภาคภาคตะวันออกเฉียงเหนือ 2</p>
+
 
   
 </div>
@@ -457,88 +464,95 @@ h1, p {
 <script>
   let isLocked = false; // ตัวแปรบอกสถานะของ Lock/Unlock
 
-  // ฟังก์ชัน Toggle Lock/Unlock
-  function toggleLock() {
-    isLocked = !isLocked; // สลับสถานะ lock/unlock
-    const icon = document.getElementById("lockUnlockIcon");
+// ฟังก์ชัน Toggle Lock/Unlock
+function toggleLock() {
+  isLocked = !isLocked; // สลับสถานะ lock/unlock
+  const icon = document.getElementById("lockUnlockIcon");
 
-    // เปลี่ยน icon ขึ้นอยู่กับสถานะ
-    icon.src = isLocked ? "gif/lock.png" : "gif/unlock.png";
-    icon.alt = isLocked ? "lock" : "unlock";
+  // เปลี่ยน icon ขึ้นอยู่กับสถานะ
+  icon.src = isLocked ? "gif/lock.png" : "gif/unlock.png";
+  icon.alt = isLocked ? "lock" : "unlock";
 
-    // เพิ่ม animation ขยายหด
-    icon.style.transform = isLocked ? "scale(1.2)" : "scale(1)";
-    setTimeout(() => {
-      icon.style.transform = isLocked ? "scale(1)" : "scale(1.2)";
-    }, 300);
+  // เพิ่ม animation ขยายหด
+  icon.style.transform = isLocked ? "scale(1.2)" : "scale(1)";
+  setTimeout(() => {
+    icon.style.transform = isLocked ? "scale(1)" : "scale(1.2)";
+  }, 300);
+}
+
+const container = document.getElementById('container');
+
+// ฟังก์ชัน navigateBack ใช้เมื่อเราต้องการเปลี่ยนหน้า
+function navigateBack() {
+  container.classList.add('slide-out-right');
+  setTimeout(() => {
+    window.location.href = 'index.html';
+  }, 500);
+}
+
+// สำหรับ Touch Events (มือถือ/แท็บเล็ต)
+let touchStartX = 0, touchStartY = 0;
+const threshold = 50;
+
+window.addEventListener('touchstart', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+window.addEventListener('touchend', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  const touchEndY = e.changedTouches[0].screenY;
+  const diffY = touchEndY - touchStartY;
+
+  if (diffY < -threshold) {
+    navigateBack();
   }
+}, { passive: true });
 
-  const container = document.getElementById('container');
+// สำหรับ Mouse Events (Desktop)
+let mouseStartX = 0, mouseStartY = 0;
+let isMouseDown = false; // ใช้ตรวจสอบว่าเมาส์ถูกกดค้างหรือไม่
 
-  function navigateBack() {
-    container.classList.add('slide-out-right');
-    setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 500);
+// เมื่อคลิกซ้ายค้าง
+window.addEventListener('mousedown', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  if (e.button === 0) { // ตรวจสอบว่าเป็นคลิกซ้าย
+    mouseStartX = e.screenX;
+    mouseStartY = e.screenY;
+    isMouseDown = true;
   }
+});
 
-  // สำหรับ Touch Events (มือถือ/แท็บเล็ต)
-  let touchStartX = 0, touchStartY = 0;
-  const threshold = 50;
+// เมื่อเริ่มการลาก
+window.addEventListener('mousemove', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  if (isMouseDown) {
+    const diffY = e.screenY - mouseStartY;
 
-  window.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-  }, {passive:true});
-
-  window.addEventListener('touchend', e => {
-    const touchEndY = e.changedTouches[0].screenY;
-    const diffY = touchEndY - touchStartY;
-
-    if(diffY < -threshold) {
+    // หากลากขึ้น (ค่าลบ) เกิน threshold ที่กำหนด จะทำการเปลี่ยนหน้า
+    if (diffY < -threshold) {
       navigateBack();
+      isMouseDown = false; // หยุดการตรวจจับการลาก
     }
-  }, {passive:true});
+  }
+});
 
-  // สำหรับ Mouse Events (Desktop)
-  let mouseStartX = 0, mouseStartY = 0;
-  let isMouseDown = false; // ใช้ตรวจสอบว่าเมาส์ถูกกดค้างหรือไม่
+// เมื่อปล่อยคลิก
+window.addEventListener('mouseup', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  if (isMouseDown) {
+    isMouseDown = false; // หยุดการตรวจจับเมื่อปล่อยคลิก
+  }
+});
 
-  // เมื่อคลิกซ้ายค้าง
-  window.addEventListener('mousedown', e => {
-    if (e.button === 0) { // ตรวจสอบว่าเป็นคลิกซ้าย
-      mouseStartX = e.screenX;
-      mouseStartY = e.screenY;
-      isMouseDown = true;
-    }
-  });
+// ปุ่ม Arrow
+window.addEventListener('keydown', e => {
+  if (e.key === 'ArrowUp' && !isLocked) {
+    navigateBack();
+  }
+});
 
-  // เมื่อเริ่มการลาก
-  window.addEventListener('mousemove', e => {
-    if (isMouseDown) {
-      const diffY = e.screenY - mouseStartY;
-
-      // หากลากขึ้น (ค่าลบ) เกิน threshold ที่กำหนด จะทำการเปลี่ยนหน้า
-      if (diffY < -threshold) {
-        navigateBack();
-        isMouseDown = false; // หยุดการตรวจจับการลาก
-      }
-    }
-  });
-
-  // เมื่อปล่อยคลิก
-  window.addEventListener('mouseup', e => {
-    if (isMouseDown) {
-      isMouseDown = false; // หยุดการตรวจจับเมื่อปล่อยคลิก
-    }
-  });
-
-  // ปุ่ม Arrow
-  window.addEventListener('keydown', e => {
-    if(e.key === 'ArrowUp') {
-      navigateBack();
-    }
-  });
 </script>
 
 

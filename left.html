@@ -17,7 +17,7 @@ html, body {
     padding: 0;
     height: 100%;
     font-family: 'Mitr', Arial, sans-serif;
-    background: url('resized_and_sharpened_images/left-bg.jpg') no-repeat center center fixed;
+    background: rgba(0, 0, 0, 1) url('img/left-bg.png') no-repeat center center fixed;
     background-size: cover; /* ปรับขนาดให้ครอบคลุมทั้งหน้าจอ */
     background-position: center center; /* วางภาพให้อยู่ตรงกลาง */
     background-attachment: fixed; /* ทำให้พื้นหลังไม่เลื่อน */
@@ -27,10 +27,18 @@ html, body {
     align-items: center;
     
 }
-h1, p {
+h1,h2, p {
   color: white; /* สีตัวอักษร */
   text-shadow: 1px 1px 2px black, -1px -1px 2px black; /* เพิ่มขอบดำ */
 }
+
+#GoodSticker {
+    width: 30vw;
+    height: auto;
+    user-select: none;
+    margin: 0 auto 3vw auto;
+    display: block;
+  }
 
 
 
@@ -41,17 +49,18 @@ h1, p {
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+
     flex-direction: column;
     font-size: 18px;
     user-select: none;
     padding: 20px;
     box-sizing: border-box;
     text-align: justify;
-    overflow-y: auto;
     transform: translateX(100vw); /* เริ่มจากขวา */
     animation: slide-in-left 0.5s forwards ease;
     transition: transform 0.5s ease;
+
+    
 }
 
 @keyframes slide-in-left {
@@ -69,10 +78,10 @@ h1, p {
 
   #giftIconWrapper {
   position: fixed;
-  bottom: 130px;
+  bottom: 100px;
   right: 20px;
-  width: 90px;
-  height: 90px;
+  width: 60px;
+  height: 60px;
   background: #f58220; /* สีส้ม มทส. */
   border-radius: 50%; /* ทำให้เป็นวงกลม */
   display: flex;
@@ -91,7 +100,7 @@ h1, p {
 }
 
   #giftIcon {
-    width: 60px;
+    width: 40px;
     height: auto;
     user-select: none;
   }
@@ -101,8 +110,8 @@ h1, p {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 90px;
-    height: 90px;
+    width: 60px;
+    height: 60px;
     background: #f58220; /* สีส้ม มทส. */
     border-radius: 50%; /* ทำให้เป็นวงกลม */
     display: flex;
@@ -121,7 +130,7 @@ h1, p {
   }
 
   #lockUnlockWrapper img {
-    width: 40px;
+    width: 30px;
     height: auto;
     user-select: none;
     transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
@@ -160,6 +169,9 @@ h1, p {
     height: auto;
     user-select: none;
   }
+  strong{
+    color:#2196f3;
+  }
 
   #voiceWrapper img:hover {
     transform: scale(1.1);
@@ -170,16 +182,30 @@ h1, p {
 <body>
 
 <div id="container">
-  <h1>บรรยากาศและสิ่งแวดล้อม</h1>
-  <p>ขอแบ่งเป็นส่วนๆ ในแต่ละวันและในแต่ละฤดูกาลดีกว่า สำหรับในแต่ละวัน ในช่วงเช้าจะเป็นเวลาของการไปเรียน ซึ่งจะเริ่มตั้งแต่ประมาณ 8 โมงถึง 9 โมง ในช่วงนี้จะมีรถมอเตอร์ไซค์จำนวนมากวิ่งบนท้องถนน โดยส่วนใหญ่จะมุ่งหน้าไปที่อาคารเรียนรวมของมหาวิทยาลัย ซึ่งที่นี่จะใช้เป็นอาคารสำหรับการเรียนการสอน (Lecture Hall) จากนั้นก็จะมีการแบ่งกลุ่มไปทำกิจกรรมของแต่ละสาขาที่อาคารแล็บ ซึ่งแล็บเหล่านี้จะมีหลายตึกตามสาขาวิชา บางสาขาจะมีการใช้เครื่องมือร่วมกันและเรียนในตึกเดียวกัน ในส่วนของบรรยากาศการเรียนก็จะแตกต่างจากมัธยม เพราะบางครั้งเพื่อนๆ ก็ไม่ได้เรียนวิชาเดียวกันหรืออยู่ในห้องเดียวกันตลอดเวลา เว้นแต่ว่าจะลงวิชาเดียวกันในเวลาเดียวกันกับ Section เดียวกัน
+  <img id="GoodSticker" src="gif/Good2.gif" alt="เด็กน้อยสติ๊กเกอร์" />
+  <h1 style="color: #2196f3;">บรรยากาศและสิ่งแวดล้อม</h1>
 
-บรรยากาศภายในมหาวิทยาลัยค่อนข้างร่มรื่น เพราะมีพื้นที่ป่าเป็นจำนวนมาก เหมาะกับคนที่ชอบสีเขียวๆ ถึงแม้ว่าจะมีป่ามาก แต่ก็ไม่ห่างจากตัวเมืองเลย ขับไปประมาณ 10 นาทีก็ถึงตัวเมืองแล้ว ในกรณีที่อยากไปเที่ยว ก็มีห้างใหญ่ๆ อย่าง เดอะมอลล์ เซ็นทรัล และ Terminal 21 ที่ตั้งอยู่ไม่ไกลจากมหาวิทยาลัย นอกจากนี้ยังไม่ห่างจากสถานที่ท่องเที่ยวชื่อดัง เช่น เขาใหญ่ หรือเขาเขียว
+<h2 ><strong>บรรยากาศในแต่ละวัน</strong></h2>
+<p>ขอแบ่งเป็นส่วนๆ ในแต่ละวันและในแต่ละฤดูกาลดีกว่า สำหรับในแต่ละวัน ในช่วงเช้าจะเป็นเวลาของการไปเรียน ซึ่งจะเริ่มตั้งแต่ประมาณ 8 โมงถึง 9 โมง ในช่วงนี้จะมีรถมอเตอร์ไซค์จำนวนมากวิ่งบนท้องถนน โดยส่วนใหญ่จะมุ่งหน้าไปที่อาคารเรียนรวมของมหาวิทยาลัย ซึ่งที่นี่จะใช้เป็นอาคารสำหรับการเรียนการสอน (Lecture Hall) จากนั้นก็จะมีการแบ่งกลุ่มไปทำกิจกรรมของแต่ละสาขาที่อาคารแล็บ ซึ่งแล็บเหล่านี้จะมีหลายตึกตามสาขาวิชา บางสาขาจะมีการใช้เครื่องมือร่วมกันและเรียนในตึกเดียวกัน</p>
 
-ในเรื่องของฤดูต่างๆ ฤดูร้อนช่วงกลางวันจะร้อนมาก ส่วนฤดูฝนค่อนข้างชื้น ถ้าอยู่หอในจะมีปัญหาเรื่องยุงค่อนข้างเยอะ เนื่องจากหอในบางส่วนตั้งอยู่ใกล้พื้นที่ป่า แต่ก็ไม่ใช่ป่าขนาดใหญ่ เป็นป่านิดๆ ที่มหาวิทยาลัยสร้างเอาไว้ โดยอากาศในช่วงนั้นจะค่อนข้างเย็นมาก โดยเฉพาะในช่วงหน้าหนาวที่อุณหภูมิจะลดลงถึงประมาณ 18 องศาเซลเซียส ซึ่งถือว่าค่อนข้างเย็น
+<p>ในส่วนของบรรยากาศการเรียนก็จะแตกต่างจากมัธยม เพราะบางครั้งเพื่อนๆ ก็ไม่ได้เรียนวิชาเดียวกันหรืออยู่ในห้องเดียวกันตลอดเวลา เว้นแต่ว่าจะลงวิชาเดียวกันในเวลาเดียวกันกับ Section เดียวกัน</p>
 
-สิ่งที่ทำให้รู้สึกดีมากในช่วงที่อยู่หอคือพี่ๆ ที่หอคอยช่วยเหลือดีมาก ตั้งแต่วันแรกที่เข้ามา บรรยากาศที่นี่ทำให้รู้สึกไม่โดดเดี่ยว เพราะมีสถานที่ให้ทำกิจกรรมหลากหลาย เช่น ยิมที่สามารถเข้าใช้ได้ฟรี หรือแม้แต่สระน้ำที่วิ่งคนไปเยอะๆ หรือแม้กระทั่งอ่างห้วยยางที่ให้บรรยากาศริมแม่น้ำ ซึ่งเหมาะมากสำหรับการออกกำลังกายและพักผ่อน
+<h2><strong>บรรยากาศภายในมหาวิทยาลัย</strong></h2>
+<p>บรรยากาศภายในมหาวิทยาลัยค่อนข้างร่มรื่น เพราะมีพื้นที่ป่าเป็นจำนวนมาก เหมาะกับคนที่ชอบสีเขียวๆ ถึงแม้ว่าจะมีป่ามาก แต่ก็ไม่ห่างจากตัวเมืองเลย ขับไปประมาณ 10 นาทีก็ถึงตัวเมืองแล้ว</p>
 
-สรุปได้เลยว่า มหาวิทยาลัยนี้เหมาะสำหรับคนที่ชอบบรรยากาศธรรมชาติ ไม่ต้องการการเที่ยวมากเกินไป แต่ก็ยังสามารถเพลิดเพลินกับกิจกรรมต่างๆ และการใช้ชีวิตในบรรยากาศที่ร่มรื่นได้ดี</p>
+<p>ในกรณีที่อยากไปเที่ยว ก็มีห้างใหญ่ๆ อย่าง เดอะมอลล์ เซ็นทรัล และ Terminal 21 ที่ตั้งอยู่ไม่ไกลจากมหาวิทยาลัย นอกจากนี้ยังไม่ห่างจากสถานที่ท่องเที่ยว เช่น เขาใหญ่</p>
+
+<h2><strong>บรรยากาศตามฤดูกาล</strong></h2>
+<p>ในเรื่องของฤดูต่างๆ ฤดูร้อนช่วงกลางวันจะร้อนมาก ส่วนฤดูฝนค่อนข้างชื้น ถ้าอยู่หอในจะมีปัญหาเรื่องยุงค่อนข้างเยอะ เนื่องจากหอในบางส่วนตั้งอยู่ใกล้พื้นที่ป่า แต่ก็ไม่ใช่ป่าขนาดใหญ่ เป็นป่านิดๆ ที่มหาวิทยาลัยสร้างเอาไว้</p>
+
+<p>อากาศในช่วงนั้นจะค่อนข้างเย็นมาก โดยเฉพาะในช่วงหน้าหนาวที่อุณหภูมิจะลดลงถึงประมาณ 18 องศาเซลเซียส ซึ่งถือว่าค่อนข้างเย็น</p>
+
+<h2><strong>สิ่งอำนวยความสะดวกในหอพัก</strong></h2>
+<p>สิ่งที่ทำให้รู้สึกดีมากในช่วงที่อยู่หอคือพี่ๆ ที่หอคอยช่วยเหลือดีมาก ตั้งแต่วันแรกที่เข้ามา บรรยากาศที่นี่ทำให้รู้สึกไม่โดดเดี่ยว เพราะมีสถานที่ให้ทำกิจกรรมหลากหลาย เช่น ยิมที่สามารถเข้าใช้ได้ฟรี หรือแม้แต่สระน้ำที่วิ่งคนไปเยอะๆ หรือแม้กระทั่งอ่างห้วยยางที่ให้บรรยากาศริมแม่น้ำ ซึ่งเหมาะมากสำหรับการออกกำลังกายและพักผ่อน</p>
+
+<h2><strong>สรุป</strong></h2>
+<p>สรุปได้เลยว่า มหาวิทยาลัยนี้เหมาะสำหรับคนที่ชอบบรรยากาศธรรมชาติ ไม่ต้องการการเที่ยวมากเกินไป แต่ก็ยังสามารถเพลิดเพลินกับกิจกรรมต่างๆ และการใช้ชีวิตในบรรยากาศที่ร่มรื่นได้ดี</p>
+
 
   
 </div>
@@ -208,56 +234,97 @@ h1, p {
 </script>
 <script>
   let isLocked = false; // ตัวแปรบอกสถานะของ Lock/Unlock
-  
 
-  // ฟังก์ชัน Toggle Lock/Unlock
-  function toggleLock() {
-    isLocked = !isLocked; // สลับสถานะ lock/unlock
-    const icon = document.getElementById("lockUnlockIcon");
-    
-    // เปลี่ยน icon ขึ้นอยู่กับสถานะ
-    icon.src = isLocked ? "gif/lock.png" : "gif/unlock.png";
-    icon.alt = isLocked ? "lock" : "unlock";
-    
-    // เพิ่ม animation ขยายหด
-    icon.style.transform = isLocked ? "scale(1.2)" : "scale(1)";
-    setTimeout(() => {
-      icon.style.transform = isLocked ? "scale(1)" : "scale(1.2)";
-    }, 300);
+// ฟังก์ชัน Toggle Lock/Unlock
+function toggleLock() {
+  isLocked = !isLocked; // สลับสถานะ lock/unlock
+  const icon = document.getElementById("lockUnlockIcon");
+
+  // เปลี่ยน icon ขึ้นอยู่กับสถานะ
+  icon.src = isLocked ? "gif/lock.png" : "gif/unlock.png";
+  icon.alt = isLocked ? "lock" : "unlock";
+
+  // เพิ่ม animation ขยายหด
+  icon.style.transform = isLocked ? "scale(1.2)" : "scale(1)";
+  setTimeout(() => {
+    icon.style.transform = isLocked ? "scale(1)" : "scale(1.2)";
+  }, 300);
+}
+
+const container = document.getElementById('container');
+
+// ฟังก์ชัน navigateBack ใช้เมื่อเราต้องการเปลี่ยนหน้า
+function navigateBack() {
+  container.classList.add('slide-out-right');  // เปลี่ยนเป็น slide-out-right สำหรับการเลื่อนขวา
+  setTimeout(() => {
+    window.location.href = 'index.html'; // เปลี่ยนหน้าไปที่ index.html
+  }, 500);
+}
+
+// สำหรับ Touch Events (มือถือ/แท็บเล็ต)
+let touchStartX = 0, touchStartY = 0;
+const threshold = 50;
+
+window.addEventListener('touchstart', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+window.addEventListener('touchend', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  const touchEndX = e.changedTouches[0].screenX;
+  const diffX = touchEndX - touchStartX;  // ใช้ diffX แทน diffY
+
+  if (diffX > threshold) {  // เลื่อนขวา
+    console.log("เลื่อนขวา (จากทัชสกรีน)");
+    navigateBack(); // เรียกฟังก์ชัน navigateBack เพื่อเปลี่ยนหน้า
   }
-  const container = document.getElementById('container');
+}, { passive: true });
 
-  function navigateBack() {
-    container.classList.add('slide-out-right');
-    setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 500);
+// สำหรับ Mouse Events (Desktop)
+let mouseStartX = 0, mouseStartY = 0;
+let isMouseDown = false; // ใช้ตรวจสอบว่าเมาส์ถูกกดค้างหรือไม่
+
+// เมื่อคลิกซ้ายค้าง
+window.addEventListener('mousedown', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  if (e.button === 0) { // ตรวจสอบว่าเป็นคลิกซ้าย
+    mouseStartX = e.screenX;
+    mouseStartY = e.screenY;
+    isMouseDown = true;
   }
+});
 
-  // Touch swipe
-  let touchStartX = 0, touchStartY = 0;
-  const threshold = 50;
+// เมื่อเริ่มการลาก
+window.addEventListener('mousemove', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  if (isMouseDown) {
+    const diffX = e.screenX - mouseStartX;  // ใช้ diffX แทน diffY
 
-  window.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-  }, {passive:true});
-
-  window.addEventListener('touchend', e => {
-    const touchEndX = e.changedTouches[0].screenX;
-    const diffX = touchEndX - touchStartX;
-
-    if(diffX > threshold) {
-      navigateBack();
+    if (diffX > threshold) {  // เลื่อนขวา
+      console.log("เลื่อนขวา (จากเมาส์)");
+      navigateBack(); // เรียกฟังก์ชัน navigateBack เพื่อเปลี่ยนหน้า
     }
-  }, {passive:true});
+  }
+});
 
-  // Keyboard arrow right
-  window.addEventListener('keydown', e => {
-    if(e.key === 'ArrowRight') {
-      navigateBack();
-    }
-  });
+// เมื่อปล่อยคลิก
+window.addEventListener('mouseup', e => {
+  if (isLocked) return;  // หากล็อคจะไม่ทำงาน
+  if (isMouseDown) {
+    isMouseDown = false; // หยุดการตรวจจับเมื่อปล่อยคลิก
+  }
+});
+
+// ปุ่ม Arrow
+window.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' && !isLocked) {  // กดปุ่มลูกศรขวา
+    console.log("เลื่อนขวา (จากปุ่มลูกศร)");
+    navigateBack(); // เรียกฟังก์ชัน navigateBack เพื่อเปลี่ยนหน้า
+  }
+});
+
 </script>
 
 </body>
