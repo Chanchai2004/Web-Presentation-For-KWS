@@ -212,40 +212,70 @@
     });
   });
 
-  function navigateTo(url, direction) {
-    window.location.href = url;
+function navigateTo(url, direction) {
+  window.location.href = url;
+}
+
+let touchStartX = 0, touchStartY = 0;
+let mouseStartX = 0, mouseStartY = 0;
+const threshold = 50;
+
+// สำหรับการลากทัชสกรีน
+window.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, {passive:true});
+
+window.addEventListener('touchend', e => {
+  const touchEndX = e.changedTouches[0].screenX;
+  const touchEndY = e.changedTouches[0].screenY;
+  const diffX = touchEndX - touchStartX;
+  const diffY = touchEndY - touchStartY;
+  if (Math.abs(diffX) > Math.abs(diffY)) {
+    if (diffX > threshold) navigateTo('right.html', 'right');
+    else if (diffX < -threshold) navigateTo('left.html', 'left');
+  } else {
+    if (diffY > threshold) navigateTo('down.html', 'down');
+    else if (diffY < -threshold) navigateTo('up.html', 'up');
   }
+}, {passive:true});
 
-  let touchStartX = 0, touchStartY = 0;
-  const threshold = 50;
+// สำหรับการลากด้วยเมาส์
+window.addEventListener('mousedown', e => {
+  mouseStartX = e.screenX;
+  mouseStartY = e.screenY;
+});
 
-  window.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-  }, {passive:true});
+window.addEventListener('mousemove', e => {
+  if (e.buttons === 1) { // ตรวจสอบว่าเมาส์ถูกกดไว้
+    const mouseDiffX = e.screenX - mouseStartX;
+    const mouseDiffY = e.screenY - mouseStartY;
 
-  window.addEventListener('touchend', e => {
-    const touchEndX = e.changedTouches[0].screenX;
-    const touchEndY = e.changedTouches[0].screenY;
-    const diffX = touchEndX - touchStartX;
-    const diffY = touchEndY - touchStartY;
-    if(Math.abs(diffX) > Math.abs(diffY)) {
-      if(diffX > threshold) navigateTo('right.html', 'right');
-      else if(diffX < -threshold) navigateTo('left.html', 'left');
+    if (Math.abs(mouseDiffX) > Math.abs(mouseDiffY)) {
+      if (mouseDiffX > threshold) navigateTo('right.html', 'right');
+      else if (mouseDiffX < -threshold) navigateTo('left.html', 'left');
     } else {
-      if(diffY > threshold) navigateTo('down.html', 'down');
-      else if(diffY < -threshold) navigateTo('up.html', 'up');
+      if (mouseDiffY > threshold) navigateTo('down.html', 'down');
+      else if (mouseDiffY < -threshold) navigateTo('up.html', 'up');
     }
-  }, {passive:true});
+  }
+});
 
-  window.addEventListener('keydown', e => {
-    switch(e.key) {
-      case 'ArrowLeft': navigateTo('left.html', 'left'); break;
-      case 'ArrowRight': navigateTo('right.html', 'right'); break;
-      case 'ArrowUp': navigateTo('up.html', 'up'); break;
-      case 'ArrowDown': navigateTo('down.html', 'down'); break;
-    }
-  });
+window.addEventListener('mouseup', e => {
+  mouseStartX = 0;
+  mouseStartY = 0;
+});
+
+// สำหรับการใช้งานปุ่มลูกศร
+window.addEventListener('keydown', e => {
+  switch (e.key) {
+    case 'ArrowLeft': navigateTo('left.html', 'left'); break;
+    case 'ArrowRight': navigateTo('right.html', 'right'); break;
+    case 'ArrowUp': navigateTo('up.html', 'up'); break;
+    case 'ArrowDown': navigateTo('down.html', 'down'); break;
+  }
+});
+
 </script>
 
 </body>
